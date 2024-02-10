@@ -1,4 +1,5 @@
 "use client";
+import LandingNav from "@/components/landingNav";
 import FormContainer from "@/components/auth/formContainer";
 import LoginForm from "@/components/auth/loginForm";
 
