@@ -2,32 +2,32 @@
 import { useTheme } from "next-themes";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@radix-ui/react-label";
 const ThemeToggel = () => {
 	const { setTheme } = useTheme();
-	const [toggel, setToggel] = useState<Boolean>(false);
+	const [toggel, setToggel] = useState(true);
+
+	useEffect(() => {
+		const theme = localStorage.getItem("theme");
+		if (theme === "dark") {
+			setToggel(true);
+		} else setToggel(false);
+	}, []);
+	useEffect(() => {
+		if (toggel) setTheme("dark");
+		else setTheme("light");
+	}, [toggel]);
 	return (
-		<div>
-			{toggel ? (
-				<button
-					className=" py-2 px-3"
-					onClick={() => {
-						setTheme("light");
-						setToggel(!toggel);
-					}}
-				>
-					<CiLight size={15}></CiLight>
-				</button>
-			) : (
-				<button
-					onClick={() => {
-						setTheme("dark");
-						setToggel(!toggel);
-					}}
-				>
-					<MdDarkMode size={20}></MdDarkMode>
-				</button>
-			)}
+		<div className="flex mt-2 gap-x-2">
+			<Label>
+				<MdDarkMode size={20}></MdDarkMode>
+			</Label>
+			<Switch
+				checked={toggel}
+				onCheckedChange={() => setToggel((prev) => !prev)}
+			/>
 		</div>
 	);
 };
