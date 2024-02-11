@@ -14,3 +14,11 @@ export const registerSchema = z.object({
     message:"Password don't match",
     path:["confirm"]
 })
+
+
+export const groupDataSchema = z.object({
+    groupName:z.string().min(1),
+    warning:z.string(),
+    remove:z.string(),
+    toleranceLevel:z.string()
+})
