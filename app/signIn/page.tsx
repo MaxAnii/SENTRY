@@ -6,6 +6,7 @@ import LoginForm from "@/components/auth/loginForm";
 const SignIn = () => {
 	return (
 		<div>
+			<LandingNav></LandingNav>
 			<FormContainer
 				title="Welcom back"
 				backButtonLabel="Don't have an account?"
