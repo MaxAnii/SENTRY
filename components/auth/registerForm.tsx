@@ -13,7 +13,22 @@ import {
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
 import { Button } from "@/components/ui/button";
+import { signup } from "@/actions/signup";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 const RegisterForm = () => {
+	type returnData =
+		| {
+				error: string;
+				success?: undefined;
+		  }
+		| {
+				success: string;
+				error?: undefined;
+		  };
+	const route = useRouter();
+	const [message, setMessage] = useState<String>("");
+	const [isPending, setTransition] = useTransition();
 	const form = useForm<z.infer<typeof registerSchema>>({
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
@@ -22,8 +37,23 @@ const RegisterForm = () => {
 			confrimPassword: "",
 		},
 	});
-	const onsubmit = (values: z.infer<typeof registerSchema>) => {
-		console.log(values);
+	const onsubmit = async (values: z.infer<typeof registerSchema>) => {
+		setMessage("");
+		console.log("sfsdf");
+		if (values.confrimPassword !== values.password) {
+			setMessage("Password is not matching");
+			return;
+			console.log("sfsdf");
+		}
+		setTransition(() => {
+			signup(values).then((data: returnData) => {
+				if (data.error) {
+					setMessage(data.error);
+				} else {
+					route.push("/dashboard");
+				}
+			});
+		});
 	};
 	return (
 		<Form {...form}>
@@ -79,9 +109,16 @@ const RegisterForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit" className="w-full">
-					Submit
-				</Button>
+				<div className="text-red-700">{message}</div>
+				{!isPending ? (
+					<Button type="submit" className="w-full" disabled={isPending}>
+						Submit
+					</Button>
+				) : (
+					<Button className="w-full" disabled={isPending}>
+						Submiting ...
+					</Button>
+				)}
 			</form>
 		</Form>
 	);
