@@ -14,9 +14,21 @@ import * as z from "zod";
 import { loginSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { login } from "@/actions/login";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { error } from "console";
+import { string } from "prop-types";
 const LoginForm = () => {
+	type returnData =
+		| {
+				error: string;
+				success?: undefined;
+		  }
+		| {
+				success: string;
+				error?: undefined;
+		  };
+	const [messsage, setMessage] = useState<String | undefined>("");
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 	const form = useForm<z.infer<typeof loginSchema>>({
@@ -28,9 +40,11 @@ const LoginForm = () => {
 	});
 	const onSubmit = (values: z.infer<typeof loginSchema>) => {
 		startTransition(() => {
-			login(values).then((data) => {
+			login(values).then((data: returnData) => {
 				if (data.success) {
 					router.push("/dashboard", { scroll: false });
+				} else {
+					setMessage(data.error);
 				}
 			});
 		});
@@ -75,6 +89,7 @@ const LoginForm = () => {
 						</FormItem>
 					)}
 				/>
+				<div className="text-red-700">{messsage}</div>
 				<Button type="submit" className="w-full" disabled={isPending}>
 					Submit
 				</Button>
