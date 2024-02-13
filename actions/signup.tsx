@@ -1,7 +1,7 @@
 "use server";
 import { registerSchema } from "@/schemas";
 import * as z from "zod";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 export const signup = async (values: z.infer<typeof registerSchema>) => {
 	const validateFields = registerSchema.safeParse(values);
