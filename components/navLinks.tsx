@@ -14,7 +14,7 @@ const NavLinks = () => {
 		},
 	];
 	return (
-		<div>
+		<div className="flex">
 			{routes.map((item, index) => {
 				return (
 					<Link
