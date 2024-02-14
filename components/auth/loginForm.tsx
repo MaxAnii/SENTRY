@@ -19,15 +19,6 @@ import { useRouter } from "next/navigation";
 import { error } from "console";
 import { string } from "prop-types";
 const LoginForm = () => {
-	type returnData =
-		| {
-				error: string;
-				success?: undefined;
-		  }
-		| {
-				success: string;
-				error?: undefined;
-		  };
 	const [messsage, setMessage] = useState<String | undefined>("");
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
@@ -39,15 +30,7 @@ const LoginForm = () => {
 		},
 	});
 	const onSubmit = (values: z.infer<typeof loginSchema>) => {
-		startTransition(() => {
-			login(values).then((data: returnData) => {
-				if (data.success) {
-					router.push("/dashboard", { scroll: false });
-				} else {
-					setMessage(data.error);
-				}
-			});
-		});
+		console.log(values);
 	};
 	return (
 		<Form {...form}>
