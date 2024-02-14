@@ -12,6 +12,9 @@ export const registerSchema = z.object({
     confrimPassword:z.string().min(8)
 })
 
+export const whatsVerificationSchema= z.object({
+    phoneNumber:z.string().min(10)
+})
 
 export const groupDataSchema = z.object({
     groupName:z.string().min(1),
