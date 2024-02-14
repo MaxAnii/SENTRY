@@ -1,3 +1,4 @@
+"use client";
 import {
 	Card,
 	CardContent,
@@ -31,7 +32,9 @@ const FormContainer = ({
 						<FaGoogle size={20}></FaGoogle>
 					</Button>
 					<Button variant="secondary" className="w-[50%] ">
-						<FaWhatsapp size={20}></FaWhatsapp>
+						<Link href="/whatsAppAuth">
+							<FaWhatsapp size={20}></FaWhatsapp>
+						</Link>
 					</Button>
 				</CardFooter>
 				<CardFooter>
