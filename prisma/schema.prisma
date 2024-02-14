@@ -17,6 +17,7 @@ model User {
   image         String?
   password      String?
   accounts      Account[]
+  phoneNumber   String?
 }
 
 model Account {
