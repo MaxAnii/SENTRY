@@ -25,12 +25,13 @@ const DashTable = () => {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{data.map((item) => {
+					{data.map((item, index) => {
 						return (
 							<TableRow
-							// onClick={() => {
-							// 	route.push(`/room/${item.id}`);
-							// }}
+								// onClick={() => {
+								// 	route.push(`/room/${item.id}`);
+								// }}
+								key={index}
 							>
 								<TableCell className="font-medium p-4">
 									<Avatar>
