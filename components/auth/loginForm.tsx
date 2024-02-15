@@ -15,12 +15,11 @@ import { loginSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import { error } from "console";
-import { string } from "prop-types";
+
+type returnData = { error: string };
 const LoginForm = () => {
 	const [messsage, setMessage] = useState<String | undefined>("");
-	const router = useRouter();
+
 	const [isPending, startTransition] = useTransition();
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
@@ -30,7 +29,14 @@ const LoginForm = () => {
 		},
 	});
 	const onSubmit = (values: z.infer<typeof loginSchema>) => {
-		console.log(values);
+		setMessage("");
+		startTransition(() => {
+			login(values).then((data: any) => {
+				if (data.error) {
+					setMessage(data.error);
+				}
+			});
+		});
 	};
 	return (
 		<Form {...form}>
@@ -73,9 +79,15 @@ const LoginForm = () => {
 					)}
 				/>
 				<div className="text-red-700">{messsage}</div>
-				<Button type="submit" className="w-full" disabled={isPending}>
-					Submit
-				</Button>
+				{!isPending ? (
+					<Button type="submit" className="w-full">
+						Submit
+					</Button>
+				) : (
+					<Button disabled={isPending} className="w-full">
+						Submiting ...
+					</Button>
+				)}
 			</form>
 		</Form>
 	);
