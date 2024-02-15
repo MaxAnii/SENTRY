@@ -8,6 +8,22 @@ export const {
   signIn,
   signOut
 } = NextAuth({
+  callbacks:{
+  // used this callback to added the user Id in the session token, we can also added custom feilds (Ansar)
+    async session({token,session}) {
+     if (token.sub && session.user){
+      
+        session.user.id = token.sub
+      }
+      return session 
+    },
+    async jwt({token, user, profile}) {
+      // we can fetch data from db and assign it to token and we can added to the session token
+      // token.custom = data.userName
+      console.log({user:user},{profile:profile})
+      return token
+    }
+  },
   adapter:PrismaAdapter(db),
   session:{strategy:"jwt"},
   ...authConfig,
