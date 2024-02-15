@@ -19,7 +19,6 @@ try {
     })
 } catch (error) {
     if (error instanceof AuthError){
-        console.log(error.message)
         switch(error.type){
             case "CredentialsSignin":
                 return {
