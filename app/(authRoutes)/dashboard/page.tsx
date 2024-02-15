@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 const page = async () => {
 	const session = await auth();
 	const isUserLoggedIn = JSON.stringify(session);
+
 	return (
 		<div className="pl-9 ">
 			<div className="md:flex max-w-[90vw] w-full">
