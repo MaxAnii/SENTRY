@@ -39,11 +39,9 @@ const RegisterForm = () => {
 	});
 	const onsubmit = async (values: z.infer<typeof registerSchema>) => {
 		setMessage("");
-		console.log("sfsdf");
 		if (values.confrimPassword !== values.password) {
 			setMessage("Password is not matching");
 			return;
-			console.log("sfsdf");
 		}
 		setTransition(() => {
 			signup(values).then((data: returnData) => {
