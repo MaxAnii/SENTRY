@@ -10,7 +10,6 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import NewGroupForm from "./newGroupForm";
 const AddNewGroup = () => {
@@ -22,8 +21,10 @@ const AddNewGroup = () => {
 		<div>
 			{isClient && (
 				<AlertDialog>
-					<AlertDialogTrigger>
-						<Button>Add a new group</Button>
+					<AlertDialogTrigger className="mt-3">
+						<div className="bg-primary text-primary-foreground shadow hover:bg-primary/90 rounded-md p-2">
+							Add new group
+						</div>
 					</AlertDialogTrigger>
 					<AlertDialogContent>
 						<AlertDialogHeader>
@@ -33,7 +34,7 @@ const AddNewGroup = () => {
 							</AlertDialogDescription>
 						</AlertDialogHeader>
 						<AlertDialogFooter>
-							<AlertDialogCancel className="w-fulln">Cancel</AlertDialogCancel>
+							<AlertDialogCancel className="w-full">Cancel</AlertDialogCancel>
 						</AlertDialogFooter>
 					</AlertDialogContent>
 				</AlertDialog>
