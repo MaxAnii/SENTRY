@@ -4,6 +4,8 @@ import Credentials from "next-auth/providers/credentials"
 import { loginSchema } from "@/schemas"
 import { db } from "@/lib/db"
 import bcrypt from "bcryptjs"
+
+import google from "next-auth/providers/google"
 export default {
   providers: [
     Credentials({
@@ -24,5 +26,8 @@ export default {
 
       }
     })
-  ],
+  ,google({
+    clientId:process.env.GOOGLE_CLIENT_ID,
+    clientSecret:process.env.GOOGLE_CLIENT_SECRET
+  })],
 } satisfies NextAuthConfig
