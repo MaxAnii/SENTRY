@@ -15,20 +15,26 @@ type propsType = {
 	backButtonLabel: string;
 	backButtonhref: string;
 };
-
+import { signIn } from "next-auth/react"; // auth for the client side
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 const FormContainer = ({
 	children,
 	title,
 	backButtonLabel,
 	backButtonhref,
 }: propsType) => {
+	const googleAuth = () => {
+		signIn("google", {
+			callbackUrl: DEFAULT_LOGIN_REDIRECT,
+		});
+	};
 	return (
 		<div className="flex justify-center mt-[10vh] ">
 			<Card className=" shadow-md w-[400px]">
 				<CardHeader className="text-center">{title}</CardHeader>
 				<CardContent>{children}</CardContent>
 				<CardFooter className="gap-x-2">
-					<Button variant="secondary" className="w-[50%]  ">
+					<Button variant="secondary" className="w-[50%]" onClick={googleAuth}>
 						<FaGoogle size={20}></FaGoogle>
 					</Button>
 					<Button variant="secondary" className="w-[50%] ">
