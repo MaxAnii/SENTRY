@@ -58,7 +58,7 @@ const WhatAppVerificationForm = () => {
 									</FormItem>
 								)}
 							/>
-							<Button type="submit">Get OTP</Button>
+							<Button type="submit">Get verification link</Button>
 						</form>
 					</Form>
 				</CardContent>
