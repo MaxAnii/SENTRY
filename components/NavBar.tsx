@@ -2,7 +2,6 @@
 import ThemeToggel from "./themeToggel";
 
 import Link from "next/link";
-import AuthLinks from "./authLinks";
 
 const NavBar = ({ children }: { children: React.ReactNode }) => {
 	return (
