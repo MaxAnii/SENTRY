@@ -1,12 +1,5 @@
 "use client";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { whatsVerificationSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -62,9 +55,6 @@ const WhatAppVerificationForm = () => {
 						</form>
 					</Form>
 				</CardContent>
-				<CardFooter>
-					<p>Card Footer</p>
-				</CardFooter>
 			</Card>
 		</div>
 	);
