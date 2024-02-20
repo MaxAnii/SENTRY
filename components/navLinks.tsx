@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SignOut from "./signOut";
 
 const NavLinks = () => {
 	const routes = [
@@ -25,7 +24,6 @@ const NavLinks = () => {
 					</Link>
 				);
 			})}
-			<SignOut></SignOut>
 		</div>
 	);
 };
