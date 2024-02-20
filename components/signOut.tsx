@@ -9,7 +9,7 @@ const SignOut = () => {
 				await signOut();
 			}}
 		>
-			<Button className="p-2 text-sm ml-2" type="submit">
+			<Button className="pl-2  text-sm" type="submit">
 				Logout
 			</Button>
 		</form>
