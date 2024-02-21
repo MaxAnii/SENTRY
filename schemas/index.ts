@@ -22,3 +22,13 @@ export const groupDataSchema = z.object({
     remove:z.string(),
     toleranceLevel:z.string()
 })
+
+export const userDataSchema = z.object({
+    name: z.string(),
+    email:z.string().email(),
+    phoneNumber:z.string(),
+    image:z.string(),
+    password:z.string().min(8),
+    confrimPassword:z.string().min(8),
+
+})
