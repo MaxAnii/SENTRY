@@ -3,6 +3,7 @@ import { registerSchema } from "@/schemas";
 import * as z from "zod";
 import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
+import { generateVerificationToken } from "@/lib/tokens";
 export const signup = async (values: z.infer<typeof registerSchema>) => {
 	const validateFields = registerSchema.safeParse(values);
 	if (!validateFields.success) return { error: "error" };
@@ -22,6 +23,8 @@ export const signup = async (values: z.infer<typeof registerSchema>) => {
 			password: hashedPassword,
 		},
 	});
+	const verificationToken = await generateVerificationToken(email);
 	// verification token email
+	console.log(verificationToken);
 	return { success: "auth" };
 };
