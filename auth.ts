@@ -8,7 +8,28 @@ export const {
   signIn,
   signOut
 } = NextAuth({
+  pages:{
+signIn:"/signIn",
+error:"/error"
+  },
+  events:{
+    async linkAccount({user}){
+      await db.user.update({
+        where:{id: user.id},
+        data:{emailVerified:new Date()}
+      })
+    }
+  },
   callbacks:{
+    async signIn({user,account}){
+      if(account?.provider !== "credentails") return true;
+      const existingUser = await db.user.findUnique({
+        where:{id:user.id}
+      })
+      // pervent signIn without email verfication
+      if(!existingUser?.emailVerified) return false
+      return true
+    },
   // used this callback to added the user Id in the session token, we can also added custom feilds (Ansar)
     async session({token,session}) {
      if (token.sub && session.user){
