@@ -40,6 +40,16 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model verificationToken {
+  id          String   @id @default(cuid())
+  email       String?
+  phoneNumber String?
+  token       String   @unique
+  expirers    DateTime
+
+  @@unique([email, token, phoneNumber])
+}
+
 model Group {
   id             String  @id @default(cuid())
   userId         String
