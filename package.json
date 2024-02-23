@@ -323,6 +323,7 @@
 		"use-callback-ref": "^1.3.1",
 		"use-sidecar": "^1.1.2",
 		"util-deprecate": "^1.0.2",
+		"uuid": "^9.0.1",
 		"which": "^2.0.2",
 		"which-boxed-primitive": "^1.0.2",
 		"which-builtin-type": "^1.1.3",
@@ -349,6 +350,7 @@
 		"@types/bcryptjs": "^2.4.6",
 		"@types/node": "20.11.17",
 		"@types/react": "18.2.55",
+		"@types/uuid": "^9.0.8",
 		"prisma": "^5.9.1"
 	}
 }
