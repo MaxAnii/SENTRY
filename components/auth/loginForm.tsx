@@ -35,6 +35,9 @@ const LoginForm = () => {
 				if (data.error) {
 					setMessage(data.error);
 				}
+				if (data.success) {
+					setMessage(data.success);
+				}
 			});
 		});
 	};
