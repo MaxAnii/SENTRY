@@ -6,6 +6,7 @@ import { signIn } from "@/auth"
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 import { AuthError } from "next-auth"
 import { generateVerificationToken } from "@/lib/tokens"
+import { sendVerificatonEmail } from "@/lib/mail"
 
 
 export const login=async(values:z.infer<typeof loginSchema>)=>{
@@ -20,6 +21,9 @@ if(! existingUser || !existingUser.email || !existingUser.password ){
 }
 if(!existingUser.emailVerified){
     const verficationToken = await generateVerificationToken(existingUser.email)
+    if(verficationToken.email){
+        await sendVerificatonEmail(verficationToken.email,verficationToken.token)
+    }
    return {success:"Confrimation Email Sent!"}
 }
 
