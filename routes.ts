@@ -1,4 +1,4 @@
-export const publicRoutes=["/"]
+export const publicRoutes=["/","/new-verification"]
 
 export const authRoutes =["/signIn","/signUp","/whatsAppAuth"]
 
