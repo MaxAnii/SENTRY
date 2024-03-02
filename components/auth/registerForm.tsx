@@ -48,7 +48,7 @@ const RegisterForm = () => {
 				if (data.error) {
 					setMessage(data.error);
 				} else {
-					route.push("/dashboard");
+					route.push("/signIn");
 				}
 			});
 		});
