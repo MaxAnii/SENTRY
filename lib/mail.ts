@@ -11,5 +11,5 @@ export const sendVerificatonEmail = async ( email:string, token:string)=>{
         subject:"confrim your email",
         html:`<p>Click <a href=${confrimLink}>to verifiy email</a></p>`
     })
-    console.log("email sent")
+   
 }
