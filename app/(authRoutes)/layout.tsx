@@ -1,10 +1,14 @@
 import DashNav from "@/components/dashNav";
-
-const layout = ({ children }: { children: React.ReactNode }) => {
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
+const layout = async ({ children }: { children: React.ReactNode }) => {
+	const session = await auth();
 	return (
 		<div>
-			<DashNav></DashNav>
-			{children}
+			<SessionProvider session={session}>
+				<DashNav></DashNav>
+				{children}
+			</SessionProvider>
 		</div>
 	);
 };
