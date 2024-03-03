@@ -8,12 +8,15 @@ import {
 } from "@/components/ui/card";
 import UserProfileForm from "./userProfileForm";
 
+import { useCurrentUser } from "@/lib/current-user-session";
 const UserAccountCard = () => {
+	const user = useCurrentUser();
+
 	return (
 		<div>
 			<div className="relative">
 				<img
-					src="https://github.com/shadcn.png"
+					src={user?.image || "https://github.com/shadcn.png"}
 					className="h-[150px] w-[150px] rounded-full  border-amber-300 border-8 absolute left-[180px]"
 				/>
 			</div>
@@ -25,6 +28,7 @@ const UserAccountCard = () => {
 						Here you can see and update your profile
 					</CardDescription>
 				</CardHeader>
+
 				<CardContent>
 					<UserProfileForm></UserProfileForm>
 				</CardContent>
