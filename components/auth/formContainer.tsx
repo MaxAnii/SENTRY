@@ -34,14 +34,14 @@ const FormContainer = ({
 				<CardHeader className="text-center">{title}</CardHeader>
 				<CardContent>{children}</CardContent>
 				<CardFooter className="gap-x-2">
-					<Button variant="secondary" className="w-[50%]" onClick={googleAuth}>
+					{/* <Button variant="secondary" className="w-[50%]" onClick={googleAuth}>
 						<FaGoogle size={20}></FaGoogle>
 					</Button>
 					<Button variant="secondary" className="w-[50%] ">
 						<Link href="/whatsAppAuth">
 							<FaWhatsapp size={20}></FaWhatsapp>
 						</Link>
-					</Button>
+					</Button> */}
 				</CardFooter>
 				<CardFooter>
 					<Link href={backButtonhref}>
