@@ -15,29 +15,37 @@ import { userDataSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 
 import { useState, useTransition } from "react";
+import { useCurrentUser } from "@/lib/current-user-session";
+import { updateProfile } from "@/actions/updateProfile";
+import { useSession } from "next-auth/react";
 
 type returnData = { error: string };
 const UserProfileForm = () => {
 	const [messsage, setMessage] = useState<String | undefined>("");
-
+	const user = useCurrentUser();
+	const { update } = useSession();
 	const [isPending, startTransition] = useTransition();
+	if (!user) return;
 	const form = useForm<z.infer<typeof userDataSchema>>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: {
-			email: "",
-			password: "",
+			id: user.id,
+			name: user.name || "",
+			email: user.email || "",
+			phoneNumber: user.phoneNumber || "",
+			image: user.image || "",
 		},
 	});
 	const onSubmit = (values: z.infer<typeof userDataSchema>) => {
 		setMessage("");
-		// startTransition(() => {
-		// 	login(values).then((data: any) => {
-		// 		if (data.error) {
-		// 			setMessage(data.error);
-		// 		}
-		// 	});
-		// });
+
+		startTransition(() => {
+			updateProfile(values).then(() => {
+				update();
+			});
+		});
 	};
+	console.log(user);
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
