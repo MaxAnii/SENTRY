@@ -32,16 +32,26 @@ error:"/error"
     },
   // used this callback to added the user Id in the session token, we can also added custom feilds (Ansar)
     async session({token,session}) {
-     if (token.sub && session.user){
-      
+      if (token.sub && session.user){
+        
         session.user.id = token.sub
+        session.user.phoneNumber = token.phoneNumber // fix this  ts error
+        
       }
+    
       return session 
     },
-    async jwt({token, user, profile}) {
-      // we can fetch data from db and assign it to token and we can added to the session token
-      // token.custom = data.userName
-      console.log({user:user},{profile:profile})
+    async jwt({token }) {
+      if(!token.sub) return token
+   const user = await db.user.findUnique({
+    where:{id:token.sub}
+   })
+       if(!user) return token
+       token.email = user.email
+       token.image = user.image
+       token.name = user.name
+       token.phoneNumber = user.phoneNumber
+       
       return token
     }
   },
