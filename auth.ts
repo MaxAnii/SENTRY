@@ -36,14 +36,14 @@ error:"/error"
         
         session.user.id = token.sub
         session.user.phoneNumber = token.phoneNumber // fix this  ts error
-        
+        session.user.image = token.image
       }
     
       return session 
     },
     async jwt({token }) {
       if(!token.sub) return token
-   const user = await db.user.findUnique({
+   const user = await db.user.findFirst({
     where:{id:token.sub}
    })
        if(!user) return token
