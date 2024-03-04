@@ -15,10 +15,10 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  password      String?
   accounts      Account[]
+  password      String?
   phoneNumber   String?
-  groups        Group[]
+  Group         Group[]
 }
 
 model Account {
