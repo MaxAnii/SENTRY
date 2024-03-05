@@ -1,10 +1,7 @@
 import AddNewGroup from "@/components/addNewGroup";
 import DashTable from "@/components/dashTable";
-import { auth } from "@/auth";
-const page = async () => {
-	const session = await auth();
-	const isUserLoggedIn = JSON.stringify(session);
 
+const page = async () => {
 	return (
 		<div className="pl-9 ">
 			<div className="md:flex max-w-[90vw] w-full">
