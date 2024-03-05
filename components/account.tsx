@@ -1,3 +1,4 @@
+"use client";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -9,18 +10,19 @@ import {
 
 import SignOut from "./signOut";
 import Link from "next/link";
+import { useCurrentUser } from "@/lib/current-user-session";
 
 const Account = () => {
+	const user = useCurrentUser();
+
 	return (
 		<div>
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					<div>
-						<img
-							src="https://github.com/shadcn.png"
-							className="h-9 w-9 rounded-lg"
-						/>
-					</div>
+					<img
+						src={user?.image || "https://github.com/shadcn.png"}
+						className="h-10 w-10 rounded-lg border-amber-300 border-2"
+					/>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuLabel>My Account</DropdownMenuLabel>
