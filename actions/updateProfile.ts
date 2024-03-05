@@ -6,7 +6,7 @@ import { db } from "@/lib/db"
 
 
 export const updateProfile = async(values:z.infer<typeof userDataSchema>)=>{
-    console.log("function")
+   
 const validateFields = userDataSchema.safeParse(values)
 if(validateFields.success){
   const{id,name,email,phoneNumber,image} =validateFields.data
