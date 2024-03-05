@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import authConfig from "@/auth.config"
 import {PrismaAdapter} from "@auth/prisma-adapter"
 import { db } from "@/lib/db"
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -36,9 +37,9 @@ error:"/error"
         
         session.user.id = token.sub
         session.user.phoneNumber = token.phoneNumber // fix this  ts error
-        session.user.image = token.image
+        session.user.image = token.image 
       }
-    
+   
       return session 
     },
     async jwt({token }) {
@@ -47,11 +48,12 @@ error:"/error"
     where:{id:token.sub}
    })
        if(!user) return token
-       token.email = user.email
-       token.image = user.image
-       token.name = user.name
-       token.phoneNumber = user.phoneNumber
        
+       token.email = user.email
+       token.image = user.image as string
+       token.name = user.name
+       token.phoneNumber = user.phoneNumber  as string
+        
       return token
     }
   },
