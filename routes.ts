@@ -1,6 +1,6 @@
-export const publicRoutes=["/","/new-verification"]
+export const publicRoutes=["/"]
 
-export const authRoutes =["/signIn","/signUp","/whatsAppAuth"]
+export const authRoutes =["/signIn","/signUp","/whatsAppAuth","/new-verification"]
 
 export const apiAuthPrefix = "/api/auth"
 
