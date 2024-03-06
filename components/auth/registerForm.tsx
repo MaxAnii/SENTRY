@@ -15,7 +15,6 @@ import { Input } from "../ui/input";
 import { Button } from "@/components/ui/button";
 import { signup } from "@/actions/signup";
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
 const RegisterForm = () => {
 	type returnData =
 		| {
@@ -26,7 +25,6 @@ const RegisterForm = () => {
 				success: string;
 				error?: undefined;
 		  };
-	const route = useRouter();
 	const [message, setMessage] = useState<String>("");
 	const [isPending, setTransition] = useTransition();
 	const form = useForm<z.infer<typeof registerSchema>>({
@@ -48,7 +46,7 @@ const RegisterForm = () => {
 				if (data.error) {
 					setMessage(data.error);
 				} else {
-					route.push("/signIn");
+					setMessage("Verfication email is sent!");
 				}
 			});
 		});
