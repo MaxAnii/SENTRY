@@ -1,5 +1,4 @@
 import { RiTableAltLine } from "react-icons/ri";
-import AddNewGroup from "@/components/addNewGroup";
 
 const NoTableScreen = () => {
 	return (
@@ -17,9 +16,6 @@ const NoTableScreen = () => {
 					You currently don't have any groups added, please added some so that
 					you can see the right here
 				</p>
-				<div className="ml-1">
-					<AddNewGroup></AddNewGroup>
-				</div>
 			</div>
 		</div>
 	);
