@@ -40,8 +40,12 @@ const UserProfileForm = () => {
 		setMessage("");
 
 		startTransition(() => {
-			updateProfile(values).then(() => {
+			updateProfile(values).then((data) => {
 				update();
+				setMessage(data?.message);
+				setTimeout(() => {
+					setMessage("");
+				}, 5000);
 			});
 		});
 	};
@@ -120,11 +124,11 @@ const UserProfileForm = () => {
 				<div className="text-red-700">{messsage}</div>
 				{!isPending ? (
 					<Button type="submit" className="w-full">
-						Submit
+						Update
 					</Button>
 				) : (
 					<Button disabled={isPending} className="w-full">
-						Submiting ...
+						Updating...
 					</Button>
 				)}
 			</form>
