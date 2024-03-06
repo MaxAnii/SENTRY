@@ -25,8 +25,8 @@ export const groupDataSchema = z.object({
 
 export const userDataSchema = z.object({
     id:z.string(),
-    name: z.string().min(0),
-    email:z.string().email().min(0),
-    phoneNumber:z.string().min(0),
+    name: z.string(),
+    email:z.string().email(),
+    phoneNumber:z.string().min(10),
     image:z.string().min(0),
 })
