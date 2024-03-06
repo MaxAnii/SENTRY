@@ -1,7 +1,10 @@
+"use client";
 import AddNewGroup from "@/components/addNewGroup";
 import DashTable from "@/components/dashTable";
-
-const page = async () => {
+import NoNumberVerifiedAlert from "@/components/NoNumberVerifiedAlert";
+import { useCurrentUser } from "@/lib/current-user-session";
+const page = () => {
+	const user = useCurrentUser();
 	return (
 		<div className="pl-9 ">
 			<div className="md:flex max-w-[90vw] w-full">
@@ -10,7 +13,11 @@ const page = async () => {
 					<p className="text-xl">Here you can see and add new groups </p>
 				</div>
 				<div className="ml-auto sm:mt-3 md:mt-0">
-					<AddNewGroup></AddNewGroup>
+					{user?.phoneNumber ? (
+						<AddNewGroup></AddNewGroup>
+					) : (
+						<NoNumberVerifiedAlert></NoNumberVerifiedAlert>
+					)}
 				</div>
 			</div>
 			<div className="shadow-xl h-[80vh] my-4 md:mx-[15vw] sm:mx-[5vw] p-4">
