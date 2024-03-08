@@ -1,15 +1,20 @@
+import { emailTemplate } from "./emailTemplate";
+const nodemailer = require("nodemailer");
+const transporter = nodemailer.createTransport({
+	service: "SendinBlue",
+	auth: {
+		user: process.env.NODEMAILER_AUTH_USER,
+		pass: process.env.NODEMAILER_AUTH_PASS,
+	},
+});
 
-import {Resend}  from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
-
-export const sendVerificatonEmail = async ( email:string, token:string)=>{
-    const confrimLink = `http://localhost:3000/new-verification?token=${token}`
-    await resend.emails.send({
-        from: "onboarding@resend.dev",
-        to:email,
-        subject:"confrim your email",
-        html:`<p>Click <a href=${confrimLink}>to verifiy email</a></p>`
-    })
-   
-}
+export const sendVerificatonEmail = async (email: string, token: string) => {
+	const confrimLink = `http://localhost:3000/new-verification?token=${token}`;
+	await transporter.sendMail({
+		from: process.env.TRANSPORTER_FROM,
+		to: email,
+		subject: "Verify your email.",
+		html: emailTemplate(confrimLink),
+	});
+	console.log("emailsent");
+};
