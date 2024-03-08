@@ -212,6 +212,7 @@
 		"next-auth": "^5.0.0-beta.9",
 		"next-themes": "^0.2.1",
 		"node-releases": "^2.0.14",
+		"nodemailer": "^6.9.11",
 		"normalize-path": "^3.0.0",
 		"normalize-range": "^0.1.2",
 		"object-assign": "^4.1.1",
@@ -346,7 +347,7 @@
 		"build": "next build",
 		"start": "npm run build && next start",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"whatsApp": "node lib/whatsApp.js"
+		"whatsApp": "node lib/mail.ts"
 	},
 	"author": "",
 	"license": "ISC",
