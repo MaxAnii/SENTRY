@@ -9,15 +9,15 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useRouter } from "next/navigation";
-import data from "../tempData/dashboard.json";
 import NoTableScreen from "@/components/NoTableScreen";
+import { useState, useTransition, useContext } from "react";
+import { GroupListContext } from "@/hook/GroupListContext";
 const DashTable = () => {
-	const route = useRouter();
-
+	const groupList = useContext(GroupListContext);
+	if (!groupList.data) return;
 	return (
 		<div>
-			{!data ? (
+			{groupList.data.length ? (
 				<Table>
 					<TableCaption>A list of your Groups</TableCaption>
 					<TableHeader>
@@ -27,14 +27,9 @@ const DashTable = () => {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{/* {data.map((item, index) => {
+						{groupList.data.map((item: any, index: any) => {
 							return (
-								<TableRow
-									onClick={() => {
-										route.push(`/group/${item.id}`);
-									}}
-									key={index}
-								>
+								<TableRow key={index}>
 									<TableCell className="font-medium p-4">
 										<Avatar>
 											<AvatarImage src="https://github.com/shadcn.png" />
@@ -44,7 +39,7 @@ const DashTable = () => {
 									<TableCell className=" pl-4">{item.groupName}</TableCell>
 								</TableRow>
 							);
-						})} */}
+						})}
 					</TableBody>
 				</Table>
 			) : (
