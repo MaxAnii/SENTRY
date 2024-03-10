@@ -1,3 +1,4 @@
+"use client";
 import {
 	Form,
 	FormControl,
@@ -12,21 +13,40 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { groupDataSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
-
+import { useContext, useTransition } from "react";
+import { useCurrentUser } from "@/lib/current-user-session";
+import { addNewGroup } from "@/actions/groups";
+import { useState } from "react";
+import { GroupListContext } from "@/hook/GroupListContext";
 const NewGroupForm = () => {
+	const groupList = useContext(GroupListContext);
+	const user = useCurrentUser();
+	if (!user) return;
 	const [isPending, startTransition] = useTransition();
+	const [message, setMessage] = useState<String>("");
 	const form = useForm<z.infer<typeof groupDataSchema>>({
 		resolver: zodResolver(groupDataSchema),
 		defaultValues: {
+			userId: user?.id,
 			groupName: "",
 			toleranceLevel: "0",
-			warning: "3",
-			remove: "0",
+			warningPerUser: "3",
+			removeUser: "0",
 		},
 	});
 	const onSubmit = (values: z.infer<typeof groupDataSchema>) => {
-		console.log(values);
+		startTransition(async () => {
+			await addNewGroup(values).then((data) => {
+				if (data?.message) {
+					groupList.setCallFunction((prev) => !prev);
+					setMessage(data.message);
+					form.reset();
+					setTimeout(() => {
+						setMessage("");
+					}, 5000);
+				}
+			});
+		});
 	};
 	return (
 		<div className=" ">
@@ -58,7 +78,12 @@ const NewGroupForm = () => {
 							<FormItem>
 								<FormLabel>Tolerance Level</FormLabel>
 								<FormControl>
-									<Input {...field} type="range" max="5"></Input>
+									<Input
+										{...field}
+										type="range"
+										max="5"
+										disabled={isPending}
+									></Input>
 								</FormControl>
 								{field.value}
 								<FormMessage />
@@ -67,7 +92,7 @@ const NewGroupForm = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="warning"
+						name="warningPerUser"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>No. of warning (per user)</FormLabel>
@@ -81,7 +106,7 @@ const NewGroupForm = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="remove"
+						name="removeUser"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>
@@ -95,8 +120,13 @@ const NewGroupForm = () => {
 							</FormItem>
 						)}
 					/>
-					<Button type="submit" className="w-full" disabled={isPending}>
-						Submit
+					<p className="text-red-500 text-xl">{message}</p>
+					<Button
+						type="submit"
+						className="w-full text-white"
+						disabled={isPending}
+					>
+						Add
 					</Button>
 				</form>
 			</Form>
