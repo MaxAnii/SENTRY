@@ -12,8 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { userDataSchema } from "@/schemas";
-import { Button } from "@/components/ui/button";
-
 import { useState, useTransition } from "react";
 import { useCurrentUser } from "@/lib/current-user-session";
 import { updateProfile } from "@/actions/updateProfile";
@@ -26,7 +24,6 @@ const UserProfileForm = () => {
 	const { update } = useSession();
 	const [isPending, startTransition] = useTransition();
 	if (!user) return;
-	const [showOTP, setShowOTP] = useState<Boolean>(false);
 	const form = useForm<z.infer<typeof userDataSchema>>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: {
@@ -41,11 +38,6 @@ const UserProfileForm = () => {
 	const onSubmit = (values: z.infer<typeof userDataSchema>) => {
 		setMessage("");
 
-		if (values.phoneNumber !== user.phoneNumber) {
-			setShowOTP(true);
-			return;
-		}
-
 		startTransition(() => {
 			updateProfile(values).then((data) => {
 				update();
@@ -59,7 +51,6 @@ const UserProfileForm = () => {
 
 	return (
 		<>
-			{!showOTP && <ConfrimOTP></ConfrimOTP>}
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 					<FormField
@@ -131,17 +122,9 @@ const UserProfileForm = () => {
 						)}
 					/>
 					<div className="text-red-700">{messsage}</div>
-					{!isPending ? (
-						<Button type="submit" className="w-full">
-							Update
-						</Button>
-					) : (
-						<Button disabled={isPending} className="w-full">
-							Updating...
-						</Button>
-					)}
 				</form>
 			</Form>
+			<ConfrimOTP values={form.getValues()}></ConfrimOTP>
 		</>
 	);
 };
