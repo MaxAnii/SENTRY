@@ -31,6 +31,10 @@ export const userDataSchema = z.object({
 	image: z.string().min(0),
 });
 
+export const userPhoneNumberSchema = z.object({
+	phoneNumber: z.string().min(10),
+});
+
 export const otpDataSchema = z.object({
 	otp: z.string().length(6),
 });
