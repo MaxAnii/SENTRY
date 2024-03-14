@@ -12,7 +12,7 @@ import SignOut from "./signOut";
 import Link from "next/link";
 import { useCurrentUser } from "@/lib/current-user-session";
 
-const Account = () => {
+const UserDropdownMenu = () => {
 	const user = useCurrentUser();
 
 	return (
@@ -41,4 +41,4 @@ const Account = () => {
 	);
 };
 
-export default Account;
+export default UserDropdownMenu;
