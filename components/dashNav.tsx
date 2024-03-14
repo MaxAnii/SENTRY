@@ -1,6 +1,6 @@
-import NavBar from "./NavBar";
-import Account from "./account";
-import NavLinks from "./navLinks";
+import NavBar from "@/components/NavBar";
+import UserDropdownMenu from "@/components/UserDropdownMenu";
+import NavLinks from "@/components/navLinks";
 
 const DashNav = () => {
 	return (
@@ -8,7 +8,7 @@ const DashNav = () => {
 			<NavBar>
 				<>
 					<NavLinks></NavLinks>
-					<Account></Account>
+					<UserDropdownMenu></UserDropdownMenu>
 				</>
 			</NavBar>
 		</div>
