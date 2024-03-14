@@ -16,7 +16,8 @@ import { useState, useTransition } from "react";
 import { useCurrentUser } from "@/lib/current-user-session";
 import { updateProfile } from "@/actions/updateProfile";
 import { useSession } from "next-auth/react";
-import ConfrimOTP from "./ConfrimOTP";
+import { Button } from "@/components/ui/button";
+import VerifyPhoneNumber from "@/components/VerifyPhoneNumber";
 
 const UserProfileForm = () => {
 	const [messsage, setMessage] = useState<String | undefined>("");
@@ -94,7 +95,9 @@ const UserProfileForm = () => {
 						name="phoneNumber"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Phone Number</FormLabel>
+								<FormLabel className="flex gap-[165px]">
+									Phone Number <VerifyPhoneNumber></VerifyPhoneNumber>
+								</FormLabel>
 								<FormControl>
 									<Input type="number" placeholder="xxxxxxxxxx" {...field} />
 								</FormControl>
@@ -102,6 +105,7 @@ const UserProfileForm = () => {
 							</FormItem>
 						)}
 					/>
+
 					<FormField
 						control={form.control}
 						name="image"
@@ -122,9 +126,11 @@ const UserProfileForm = () => {
 						)}
 					/>
 					<div className="text-red-700">{messsage}</div>
+					<Button type="submit" className="w-full">
+						Update
+					</Button>
 				</form>
 			</Form>
-			<ConfrimOTP values={form.getValues()}></ConfrimOTP>
 		</>
 	);
 };
