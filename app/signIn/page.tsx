@@ -8,7 +8,7 @@ const SignIn = () => {
 		<div>
 			<LandingNav></LandingNav>
 			<FormContainer
-				title="Welcom back"
+				title="Welcome back"
 				backButtonLabel="Don't have an account?"
 				backButtonhref="/signUp"
 			>
