@@ -38,6 +38,8 @@ const VerifyPhoneNumber = () => {
 	const [showSendAgainOTP, setShowSendAgainOTP] = useState<Boolean>(false);
 	const [timer, setTimer] = useState<number>(60);
 	const sendOTP = async (values: z.infer<typeof userPhoneNumberSchema>) => {
+		setTimer(60);
+		setShowSendAgainOTP(false);
 		setShowConfrimOTP(true);
 		const id = setInterval(() => {
 			setTimer((prev) => {
