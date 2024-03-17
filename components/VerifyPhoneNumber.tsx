@@ -24,10 +24,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import VerifyOTP from "./VerifyOTP";
-
+import { createOTP } from "@/actions/phone-number-verification";
 const VerifyPhoneNumber = () => {
+	const [message, setMessage] = useState<string>("");
 	const form = useForm<z.infer<typeof userPhoneNumberSchema>>({
 		resolver: zodResolver(userPhoneNumberSchema),
 		defaultValues: {
@@ -36,21 +37,28 @@ const VerifyPhoneNumber = () => {
 	});
 	const [showConfrimOTP, setShowConfrimOTP] = useState<Boolean>(false);
 	const [showSendAgainOTP, setShowSendAgainOTP] = useState<Boolean>(false);
-	const [timer, setTimer] = useState<number>(60);
+	const [timer, setTimer] = useState<number>(20);
+	const [isPending, startTransition] = useTransition();
 	const sendOTP = async (values: z.infer<typeof userPhoneNumberSchema>) => {
-		setTimer(60);
-		setShowSendAgainOTP(false);
-		setShowConfrimOTP(true);
-		const id = setInterval(() => {
-			setTimer((prev) => {
-				const newTimer = prev - 1;
-				if (newTimer === 0) {
-					setShowSendAgainOTP(true);
-					clearInterval(id);
-				}
-				return newTimer;
-			});
-		}, 1000);
+		if (!values.phoneNumber) return;
+		startTransition(async () => {
+			const data = await createOTP(values);
+			if (data?.message === "OTP sent") {
+				setTimer(20);
+				setShowSendAgainOTP(false);
+				setShowConfrimOTP(true);
+				const id = setInterval(() => {
+					setTimer((prev) => {
+						const newTimer = prev - 1;
+						if (newTimer === 0) {
+							setShowSendAgainOTP(true);
+							clearInterval(id);
+						}
+						return newTimer;
+					});
+				}, 1000);
+			} else setMessage(data?.message || "");
+		});
 	};
 
 	return (
@@ -70,6 +78,7 @@ const VerifyPhoneNumber = () => {
 							<AlertDialogDescription>
 								{!showConfrimOTP ? (
 									<Form {...form}>
+										<p className="text-red-500">{message}</p>
 										<form
 											className="space-y-6"
 											onSubmit={form.handleSubmit(sendOTP)}
@@ -90,8 +99,9 @@ const VerifyPhoneNumber = () => {
 											<Button
 												type="submit"
 												className="w-full dark:text-white text-black"
+												disabled={isPending}
 											>
-												Get OTP
+												{!isPending ? "Get OTP" : "Sending OTP..."}
 											</Button>
 										</form>
 									</Form>
