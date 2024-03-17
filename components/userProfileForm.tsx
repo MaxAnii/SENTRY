@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { userDataSchema } from "@/schemas";
 import { useState, useTransition } from "react";
-import { useCurrentUser } from "@/lib/current-user-session";
+import { useCurrentUser } from "@/hook/current-user-session";
 import { updateProfile } from "@/actions/updateProfile";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";

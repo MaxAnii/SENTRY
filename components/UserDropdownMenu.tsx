@@ -10,7 +10,7 @@ import {
 
 import SignOut from "./signOut";
 import Link from "next/link";
-import { useCurrentUser } from "@/lib/current-user-session";
+import { useCurrentUser } from "@/hook/current-user-session";
 
 const UserDropdownMenu = () => {
 	const user = useCurrentUser();

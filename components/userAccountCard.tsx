@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import UserProfileForm from "./userProfileForm";
 
-import { useCurrentUser } from "@/lib/current-user-session";
+import { useCurrentUser } from "@/hook/current-user-session";
 const UserAccountCard = () => {
 	const user = useCurrentUser();
 

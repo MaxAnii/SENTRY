@@ -14,7 +14,7 @@ import * as z from "zod";
 import { groupDataSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext, useTransition } from "react";
-import { useCurrentUser } from "@/lib/current-user-session";
+import { useCurrentUser } from "@/hook/current-user-session";
 import { addNewGroup } from "@/actions/groups";
 import { useState } from "react";
 import { GroupListContext } from "@/hook/GroupListContext";

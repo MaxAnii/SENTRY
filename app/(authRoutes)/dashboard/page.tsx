@@ -2,7 +2,7 @@
 import AddNewGroup from "@/components/addNewGroup";
 import DashTable from "@/components/dashTable";
 import NoNumberVerifiedAlert from "@/components/NoNumberVerifiedAlert";
-import { useCurrentUser } from "@/lib/current-user-session";
+import { useCurrentUser } from "@/hook/current-user-session";
 const page = () => {
 	const user = useCurrentUser();
 	return (
