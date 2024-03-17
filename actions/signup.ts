@@ -9,7 +9,7 @@ export const signup = async (values: z.infer<typeof registerSchema>) => {
 	const validateFields = registerSchema.safeParse(values);
 	if (!validateFields.success) return { error: "error" };
 
-	const { email, password, confrimPassword } = validateFields.data;
+	const { email, password } = validateFields.data;
 	const hashedPassword = await bcrypt.hash(password, 10);
 	const existUser = await db.user.findUnique({
 		where: {
