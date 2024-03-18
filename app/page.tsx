@@ -1,9 +1,7 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import LandingNav from "@/components/landingNav";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 export default function Home() {
-	const router = useRouter();
 	return (
 		<>
 			<LandingNav></LandingNav>
@@ -24,9 +22,8 @@ export default function Home() {
 							variant="outline"
 							size="lg"
 							className="text-xl text-indigo-950"
-							onClick={() => router.push("/signIn")}
 						>
-							Get Started
+							<Link href="/signIn">Get Started</Link>
 						</Button>
 					</div>
 				</div>
