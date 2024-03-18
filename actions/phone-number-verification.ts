@@ -46,8 +46,7 @@ export const verifyOTP = async (values: z.infer<typeof otpDataSchema>) => {
 			const id = session?.user.id;
 			if (!id) return;
 			const data = await getOtpById(id);
-			console.log(!!data);
-			if (!!data) {
+			if (data) {
 				const hasExpired = new Date(data.expirers) < new Date();
 				if (hasExpired) {
 					return { message: "OTP expired" };
@@ -59,6 +58,11 @@ export const verifyOTP = async (values: z.infer<typeof otpDataSchema>) => {
 						},
 						data: {
 							phoneNumber: data.phoneNumber,
+						},
+					});
+					await db.verificationToken.delete({
+						where: {
+							id,
 						},
 					});
 					return {
