@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import NoTableScreen from "@/components/NoTableScreen";
-import { useState, useTransition, useContext } from "react";
+import { useContext } from "react";
 import { GroupListContext } from "@/hook/GroupListContext";
 const DashTable = () => {
 	const groupList = useContext(GroupListContext);
