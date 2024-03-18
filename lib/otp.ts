@@ -3,9 +3,11 @@ import { db } from "./db";
 import { auth } from "@/auth";
 export const generateOTP = async (phoneNumber: string) => {
 	try {
+		const session = await auth();
+		const id = session?.user.id;
 		const existingOTP = await db.verificationToken.findFirst({
 			where: {
-				phoneNumber: phoneNumber,
+				id,
 			},
 		});
 		if (existingOTP) {
@@ -17,8 +19,6 @@ export const generateOTP = async (phoneNumber: string) => {
 		}
 		const otp = uuidv4().slice(0, 6);
 		const expires = new Date(new Date().getTime() + 3600 * 1000);
-		const session = await auth();
-		const id = session?.user.id;
 		const insertOTP = await db.verificationToken.create({
 			data: {
 				id,
@@ -35,5 +35,7 @@ export const generateOTP = async (phoneNumber: string) => {
 		return {
 			message: "error",
 		};
-	} catch (error) {}
+	} catch (error: any) {
+		console.log(error.message);
+	}
 };
