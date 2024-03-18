@@ -34,7 +34,9 @@ const AddNewGroup = () => {
 							</AlertDialogDescription>
 						</AlertDialogHeader>
 						<AlertDialogFooter>
-							<AlertDialogCancel className="w-full">Cancel</AlertDialogCancel>
+							<AlertDialogCancel className="w-full bg-red-500">
+								Cancel
+							</AlertDialogCancel>
 						</AlertDialogFooter>
 					</AlertDialogContent>
 				</AlertDialog>
