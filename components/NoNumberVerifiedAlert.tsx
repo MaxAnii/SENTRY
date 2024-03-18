@@ -28,7 +28,7 @@ const NoNumberVerifiedAlert = () => {
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>
-						<AlertDialogCancel>Ok</AlertDialogCancel>
+						<AlertDialogCancel className="bg-red-500">Ok</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
