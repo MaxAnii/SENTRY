@@ -3,8 +3,13 @@ import AddNewGroup from "@/components/addNewGroup";
 import DashTable from "@/components/dashTable";
 import NoNumberVerifiedAlert from "@/components/NoNumberVerifiedAlert";
 import { useCurrentUser } from "@/hook/current-user-session";
+import { useContext } from "react";
+import { GroupListContext } from "@/hook/GroupListContext";
+import { Triangle } from "react-loader-spinner";
 const page = () => {
 	const user = useCurrentUser();
+	const groupList = useContext(GroupListContext);
+	if (!groupList.data) return;
 	return (
 		<div className="pl-9 ">
 			<div className="md:flex max-w-[90vw] w-full">
@@ -21,7 +26,18 @@ const page = () => {
 				</div>
 			</div>
 			<div className="shadow-xl h-[80vh] my-4 md:mx-[15vw] sm:mx-[5vw] p-4">
-				<DashTable></DashTable>
+				{!groupList.gettingGroupList ? (
+					<DashTable></DashTable>
+				) : (
+					<div className="flex justify-center items-center h-[80vh]">
+						<Triangle
+							height="80"
+							width="80"
+							color="#4fa94d"
+							ariaLabel="triangle-loading"
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	);
