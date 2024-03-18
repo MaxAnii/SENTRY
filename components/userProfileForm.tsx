@@ -18,6 +18,7 @@ import { updateProfile } from "@/actions/updateProfile";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import VerifyPhoneNumber from "@/components/VerifyPhoneNumber";
+import FormSubmissionSpinner from "./FormSubmissionSpinner";
 
 const UserProfileForm = () => {
 	const [messsage, setMessage] = useState<String | undefined>("");
@@ -31,7 +32,7 @@ const UserProfileForm = () => {
 			id: user.id,
 			name: user.name || "",
 			email: user.email || "",
-			phoneNumber: user.phoneNumber || "",
+			phoneNumber: user.phoneNumber,
 			image: user.image || "",
 		},
 	});
@@ -99,7 +100,7 @@ const UserProfileForm = () => {
 									Phone Number <VerifyPhoneNumber></VerifyPhoneNumber>
 								</FormLabel>
 								<FormControl>
-									<Input type="number" placeholder="xxxxxxxxxx" {...field} />
+									<Input placeholder="xxxxxxxxxx" {...field} readOnly />
 								</FormControl>
 								<FormMessage></FormMessage>
 							</FormItem>
@@ -126,9 +127,13 @@ const UserProfileForm = () => {
 						)}
 					/>
 					<div className="text-red-700">{messsage}</div>
-					<Button type="submit" className="w-full">
-						Update
-					</Button>
+					{!isPending ? (
+						<Button type="submit" className="w-full">
+							Update
+						</Button>
+					) : (
+						<FormSubmissionSpinner></FormSubmissionSpinner>
+					)}
 				</form>
 			</Form>
 		</>

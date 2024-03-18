@@ -27,6 +27,7 @@ import { Button } from "./ui/button";
 import { useState, useTransition } from "react";
 import VerifyOTP from "./VerifyOTP";
 import { createOTP } from "@/actions/phone-number-verification";
+import FormSubmissionSpinner from "./FormSubmissionSpinner";
 const VerifyPhoneNumber = () => {
 	const [message, setMessage] = useState<string>("");
 	const form = useForm<z.infer<typeof userPhoneNumberSchema>>({
@@ -40,6 +41,7 @@ const VerifyPhoneNumber = () => {
 	const [timer, setTimer] = useState<number>(20);
 	const [isPending, startTransition] = useTransition();
 	const sendOTP = async (values: z.infer<typeof userPhoneNumberSchema>) => {
+		setMessage("");
 		if (!values.phoneNumber) return;
 		startTransition(async () => {
 			const data = await createOTP(values);
@@ -96,13 +98,17 @@ const VerifyPhoneNumber = () => {
 													</FormItem>
 												)}
 											/>
-											<Button
-												type="submit"
-												className="w-full dark:text-white text-black"
-												disabled={isPending}
-											>
-												{!isPending ? "Get OTP" : "Sending OTP..."}
-											</Button>
+											{!isPending ? (
+												<Button
+													type="submit"
+													className="w-full dark:text-white text-black"
+													disabled={isPending}
+												>
+													Get OTP
+												</Button>
+											) : (
+												<FormSubmissionSpinner></FormSubmissionSpinner>
+											)}
 										</form>
 									</Form>
 								) : (

@@ -15,6 +15,7 @@ import { Input } from "../ui/input";
 import { Button } from "@/components/ui/button";
 import { signup } from "@/actions/signup";
 import { useState, useTransition } from "react";
+import FormSubmissionSpinner from "../FormSubmissionSpinner";
 const RegisterForm = () => {
 	type returnData =
 		| {
@@ -108,12 +109,10 @@ const RegisterForm = () => {
 				<div className="text-red-700">{message}</div>
 				{!isPending ? (
 					<Button type="submit" className="w-full" disabled={isPending}>
-						Submit
+						Sign Up
 					</Button>
 				) : (
-					<Button className="w-full" disabled={isPending}>
-						Submiting ...
-					</Button>
+					<FormSubmissionSpinner></FormSubmissionSpinner>
 				)}
 			</form>
 		</Form>

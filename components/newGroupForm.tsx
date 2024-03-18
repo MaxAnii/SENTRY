@@ -18,6 +18,7 @@ import { useCurrentUser } from "@/hook/current-user-session";
 import { addNewGroup } from "@/actions/groups";
 import { useState } from "react";
 import { GroupListContext } from "@/hook/GroupListContext";
+import FormSubmissionSpinner from "./FormSubmissionSpinner";
 const NewGroupForm = () => {
 	const groupList = useContext(GroupListContext);
 	const user = useCurrentUser();
@@ -121,13 +122,17 @@ const NewGroupForm = () => {
 						)}
 					/>
 					<p className="text-red-500 text-xl">{message}</p>
-					<Button
-						type="submit"
-						className="w-full text-white"
-						disabled={isPending}
-					>
-						Add
-					</Button>
+					{!isPending ? (
+						<Button
+							type="submit"
+							className="w-full text-white"
+							disabled={isPending}
+						>
+							Add
+						</Button>
+					) : (
+						<FormSubmissionSpinner></FormSubmissionSpinner>
+					)}
 				</form>
 			</Form>
 		</div>
