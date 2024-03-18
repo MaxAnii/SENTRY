@@ -1,5 +1,11 @@
 "use client";
-import { createContext, useState, useEffect, ReactNode } from "react";
+import {
+	createContext,
+	useState,
+	useEffect,
+	ReactNode,
+	useTransition,
+} from "react";
 import { getGroupList } from "@/actions/groups";
 
 type GroupType = {
@@ -17,14 +23,17 @@ type GroupListType = GroupType[] | undefined;
 type GroupListContextType = {
 	data: GroupListType;
 	setCallFunction: React.Dispatch<React.SetStateAction<boolean>>;
+	gettingGroupList: Boolean;
 };
 
 export const GroupListContext = createContext<GroupListContextType>({
 	data: undefined,
 	setCallFunction: () => {},
+	gettingGroupList: false,
 });
 
 const GroupListProvider = ({ children }: { children: ReactNode }) => {
+	const [gettingGroupList, startTransition] = useTransition();
 	const [data, setData] = useState<GroupListType>();
 	const [callFunction, setCallFunction] = useState<boolean>(false);
 
@@ -34,11 +43,15 @@ const GroupListProvider = ({ children }: { children: ReactNode }) => {
 	};
 
 	useEffect(() => {
-		getList();
+		startTransition(async () => {
+			await getList();
+		});
 	}, [callFunction]);
 
 	return (
-		<GroupListContext.Provider value={{ data, setCallFunction }}>
+		<GroupListContext.Provider
+			value={{ data, setCallFunction, gettingGroupList }}
+		>
 			{children}
 		</GroupListContext.Provider>
 	);
