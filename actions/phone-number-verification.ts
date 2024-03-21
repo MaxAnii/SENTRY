@@ -5,6 +5,7 @@ import { generateOTP } from "@/lib/otp";
 import { otpDataSchema, userPhoneNumberSchema } from "@/schemas";
 import { auth } from "@/auth";
 import { getOtpById } from "@/verification-token";
+import { sendOtp } from "@/lib/sendOtpViaWhatsApp";
 
 export const createOTP = async (
 	values: z.infer<typeof userPhoneNumberSchema>
@@ -23,9 +24,14 @@ export const createOTP = async (
 			}
 			const data = await generateOTP(phoneNumber);
 			if (data?.otp) {
-				//  send otp to whatsApp
+				const response = await sendOtp(phoneNumber, data.otp);
+				console.log(response);
+				if (response === 200)
+					return {
+						message: "OTP sent successfully",
+					};
 				return {
-					message: "OTP sent",
+					message: "Something went wrong please try again!!!",
 				};
 			}
 			return {
