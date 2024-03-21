@@ -45,7 +45,7 @@ const VerifyPhoneNumber = () => {
 		if (!values.phoneNumber) return;
 		startTransition(async () => {
 			const data = await createOTP(values);
-			if (data?.message === "OTP sent") {
+			if (data?.message === "OTP sent successfully") {
 				setTimer(20);
 				setShowSendAgainOTP(false);
 				setShowConfrimOTP(true);
