@@ -1,9 +1,9 @@
-import { Bars } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 import { Button } from "@/components/ui/button";
 const FormSubmissionSpinner = () => {
 	return (
 		<Button className="w-full" disabled>
-			<Bars
+			<ThreeDots
 				height="35"
 				width="80"
 				color="#FFFFFF"
