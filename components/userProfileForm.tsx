@@ -19,6 +19,7 @@ import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import VerifyPhoneNumber from "@/components/VerifyPhoneNumber";
 import FormSubmissionSpinner from "./FormSubmissionSpinner";
+import Link from "next/link";
 
 const UserProfileForm = () => {
 	const [messsage, setMessage] = useState<String | undefined>("");
@@ -91,21 +92,6 @@ const UserProfileForm = () => {
 							</FormItem>
 						)}
 					/>
-					<FormField
-						control={form.control}
-						name="phoneNumber"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel className="flex gap-[165px]">
-									Phone Number <VerifyPhoneNumber></VerifyPhoneNumber>
-								</FormLabel>
-								<FormControl>
-									<Input placeholder="xxxxxxxxxx" {...field} readOnly />
-								</FormControl>
-								<FormMessage></FormMessage>
-							</FormItem>
-						)}
-					/>
 
 					<FormField
 						control={form.control}
@@ -126,6 +112,23 @@ const UserProfileForm = () => {
 							</FormItem>
 						)}
 					/>
+					<FormField
+						control={form.control}
+						name="phoneNumber"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel className="">Phone Number</FormLabel>
+								<FormControl>
+									<Input placeholder="xxxxxxxxxx" {...field} readOnly />
+								</FormControl>
+								<FormMessage></FormMessage>
+							</FormItem>
+						)}
+					/>
+					{/* <VerifyPhoneNumber></VerifyPhoneNumber> */}
+					<Link href="whatsAppAuth" className="text-blue-500 underline pt-2">
+						Add/change whatsApp number
+					</Link>
 					<div className="text-red-700">{messsage}</div>
 					{!isPending ? (
 						<Button type="submit" className="w-full">
