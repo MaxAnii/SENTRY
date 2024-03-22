@@ -28,7 +28,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
 				verficationToken.token
 			);
 		}
-		return { success: "Confrimation Email Sent!" };
+		return { message: "Confrimation Email Sent!" };
 	}
 
 	try {
@@ -42,11 +42,11 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
 			switch (error.type) {
 				case "CredentialsSignin":
 					return {
-						error: "Invalid credentials",
+						message: "Invalid credentials",
 					};
 				default:
 					return {
-						error: "something went wrong",
+						message: "something went wrong",
 					};
 			}
 		}
