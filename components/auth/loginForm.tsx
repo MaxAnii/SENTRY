@@ -16,8 +16,6 @@ import { Button } from "@/components/ui/button";
 import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
 import FormSubmissionSpinner from "../FormSubmissionSpinner";
-
-type returnData = { error: string };
 const LoginForm = () => {
 	const [messsage, setMessage] = useState<String | undefined>("");
 
@@ -32,13 +30,8 @@ const LoginForm = () => {
 	const onSubmit = (values: z.infer<typeof loginSchema>) => {
 		setMessage("");
 		startTransition(() => {
-			login(values).then((data: any) => {
-				if (data.error) {
-					setMessage(data.error);
-				}
-				if (data.success) {
-					setMessage(data.success);
-				}
+			login(values).then((data) => {
+				if (data) setMessage(data.message);
 			});
 		});
 	};
