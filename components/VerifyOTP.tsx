@@ -15,9 +15,11 @@ import { Button } from "./ui/button";
 import { useState, useTransition } from "react";
 import { useSession } from "next-auth/react";
 import { verifyOTP } from "@/actions/phone-number-verification";
+import FormSubmissionSpinner from "./FormSubmissionSpinner";
+import { useRouter } from "next/navigation";
 const VerifyOTP = () => {
+	const router = useRouter();
 	const [messsage, setMessage] = useState<String | undefined>("");
-	const [showOtpBtn, setShowOtpBtn] = useState<boolean>(true);
 	const { update } = useSession();
 	const [isPending, startTransition] = useTransition();
 	const form = useForm<z.infer<typeof otpDataSchema>>({
@@ -33,7 +35,7 @@ const VerifyOTP = () => {
 			verifyOTP(values).then((data) => {
 				update();
 				setMessage(data?.message);
-				if (data?.message === "Phone number updated") setShowOtpBtn(false);
+				if (data?.message === "Phone number updated") router.push("/account");
 				setTimeout(() => {
 					setMessage("");
 				}, 5000);
@@ -50,6 +52,7 @@ const VerifyOTP = () => {
 						name="otp"
 						render={({ field }) => (
 							<FormItem>
+								<FormLabel>Enter the sent OTP</FormLabel>
 								<FormControl>
 									<Input placeholder="xxxxxx" {...field} />
 								</FormControl>
@@ -58,14 +61,17 @@ const VerifyOTP = () => {
 							</FormItem>
 						)}
 					/>
-					{showOtpBtn && (
+
+					{!isPending ? (
 						<Button
 							type="submit"
 							className="w-full dark:text-white text-black"
 							disabled={isPending}
 						>
-							{!isPending ? "Confrim OTP" : "confriming OTP ..."}
+							Confrim OTP
 						</Button>
+					) : (
+						<FormSubmissionSpinner></FormSubmissionSpinner>
 					)}
 				</form>
 			</Form>
