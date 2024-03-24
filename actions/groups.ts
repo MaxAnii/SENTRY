@@ -1,7 +1,7 @@
 "use server";
 import * as z from "zod";
 import { db } from "@/lib/db";
-import { groupDataSchema } from "@/schemas";
+import { groupDataSchema, UpdategroupDataSchema } from "@/schemas";
 import { auth } from "@/auth";
 
 export const addNewGroup = async (values: z.infer<typeof groupDataSchema>) => {
@@ -47,4 +47,36 @@ export const getGroupList = async () => {
   } catch (error: any) {
     console.log(error.message);
   }
+};
+
+export const deleteGroup = async (groupId: string) => {
+  try {
+    const data = await db.group.delete({
+      where: {
+        id: groupId,
+      },
+    });
+    if (data) return { message: "Group deleted" };
+  } catch (error) {}
+};
+
+export const updateGroupDetails = async (
+  values: z.infer<typeof UpdategroupDataSchema>,
+) => {
+  try {
+    
+    const validateFields = UpdategroupDataSchema.safeParse(values);
+    if (!validateFields.success) return { message: "no match" };
+    const { id } = validateFields.data;
+    const data = await db.group.update({
+      where: {
+        id,
+      },
+      data: {
+        ...validateFields.data,
+      },
+    });
+    if (data) return { message: "Group Updated Successfully" };
+    return { message: "something went wrong" };
+  } catch (error) {}
 };
