@@ -4,7 +4,7 @@ import { newVerification } from "@/actions/new-verification";
 import { useEffect, useState, useTransition } from "react";
 import FormContainer from "@/components/auth/formContainer";
 import { Triangle } from "react-loader-spinner";
-const page = () => {
+const Page = () => {
   const [isPending, setTransiton] = useTransition();
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
@@ -56,4 +56,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

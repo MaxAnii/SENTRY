@@ -1,4 +1,4 @@
-import DashNav from "@/components/dashNav";
+import DashboardNavbar from "@/components/DashboardNavBar";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import GroupListProvider from "@/hook/GroupListContext";
@@ -8,7 +8,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
     <div>
       <SessionProvider session={session}>
         <GroupListProvider>
-          <DashNav></DashNav>
+          <DashboardNavbar></DashboardNavbar>
           {children}
         </GroupListProvider>
       </SessionProvider>

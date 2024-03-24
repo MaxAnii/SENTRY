@@ -13,19 +13,18 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { userDataSchema } from "@/schemas";
 import { useState, useTransition } from "react";
-import { useCurrentUser } from "@/hook/current-user-session";
+import { useCurrentUser } from "@/hook/CurrentUserSession";
 import { updateProfile } from "@/actions/updateProfile";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import VerifyPhoneNumber from "@/components/VerifyPhoneNumber";
 import FormSubmissionSpinner from "./FormSubmissionSpinner";
 import Link from "next/link";
 
 const UserProfileForm = () => {
   const [messsage, setMessage] = useState<String | undefined>("");
-  const user = useCurrentUser();
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
+  const user = useCurrentUser();
   if (!user) return;
   const form = useForm<z.infer<typeof userDataSchema>>({
     resolver: zodResolver(userDataSchema),
@@ -40,7 +39,6 @@ const UserProfileForm = () => {
 
   const onSubmit = (values: z.infer<typeof userDataSchema>) => {
     setMessage("");
-
     startTransition(() => {
       updateProfile(values).then((data) => {
         update();

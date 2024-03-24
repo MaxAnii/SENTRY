@@ -1,11 +1,10 @@
 "use client";
 import { useTheme } from "next-themes";
 import { MdDarkMode } from "react-icons/md";
-import { CiLight } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@radix-ui/react-label";
-const ThemeToggel = () => {
+const ThemeToggelButton = () => {
   const { setTheme } = useTheme();
   const [toggel, setToggel] = useState(true);
 
@@ -32,4 +31,4 @@ const ThemeToggel = () => {
   );
 };
 
-export default ThemeToggel;
+export default ThemeToggelButton;

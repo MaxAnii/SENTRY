@@ -14,24 +14,24 @@ import * as z from "zod";
 import { groupDataSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext, useTransition } from "react";
-import { useCurrentUser } from "@/hook/current-user-session";
+import { useCurrentUser } from "@/hook/CurrentUserSession";
 import { addNewGroup } from "@/actions/groups";
 import { useState } from "react";
 import { GroupListContext } from "@/hook/GroupListContext";
 import FormSubmissionSpinner from "./FormSubmissionSpinner";
 const NewGroupForm = () => {
   const groupList = useContext(GroupListContext);
-  const user = useCurrentUser();
-  if (!user) return;
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<String>("");
+  const user = useCurrentUser();
+  if (!user) return;
   const form = useForm<z.infer<typeof groupDataSchema>>({
     resolver: zodResolver(groupDataSchema),
     defaultValues: {
       userId: user?.id,
       groupName: "",
-      toleranceLevel: "0",
       warningPerUser: "3",
+      toleranceLevel: "0",
       removeUser: "0",
     },
   });

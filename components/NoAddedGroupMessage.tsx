@@ -11,14 +11,15 @@ const NoAddedGroupMessage = () => {
         </div>
       </div>
       <div className="mt-[-18vh] text-center">
-        <h3 className="text-2xl">You don't have any groups added</h3>
+        <h3 className="text-2xl">{"You don't have any groups added"}</h3>
         <p className="my-1 text-xl text-gray-500">
-          You currently don't have any groups added, please added some so that
-          you can see the right here
+          {
+            "    You currently don't have any groups added, please added some so that you can see the right here"
+          }
         </p>
       </div>
     </div>
   );
 };
 
-export default NoAddedGroupMessage 
+export default NoAddedGroupMessage;

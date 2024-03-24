@@ -8,9 +8,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import SignOut from "./signOut";
+import SignOut from "./SignOutButton";
 import Link from "next/link";
-import { useCurrentUser } from "@/hook/current-user-session";
+import { useCurrentUser } from "@/hook/CurrentUserSession";
 
 const UserDropdownMenu = () => {
   const user = useCurrentUser();
@@ -22,6 +22,7 @@ const UserDropdownMenu = () => {
           <img
             src={user?.image || "https://github.com/shadcn.png"}
             className="h-10 w-10 rounded-lg border-2 border-amber-300"
+            alt="User Profile"
           />
         </DropdownMenuTrigger>
         <DropdownMenuContent>

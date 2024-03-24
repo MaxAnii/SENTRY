@@ -1,9 +1,9 @@
-import UserAccountCard from "@/components/userAccountCard";
+import UserProfileCard from "@/components/UserProfileCard";
 
 const page = () => {
   return (
     <div className="mt-[50px] flex   justify-center">
-      <UserAccountCard></UserAccountCard>
+      <UserProfileCard></UserProfileCard>
     </div>
   );
 };

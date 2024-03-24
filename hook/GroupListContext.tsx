@@ -8,7 +8,7 @@ import {
 } from "react";
 import { getGroupList } from "@/actions/groups";
 
-type GroupType = {
+export type GroupType = {
   id: string;
   userId: string;
   groupName: string;

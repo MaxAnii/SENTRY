@@ -1,9 +1,9 @@
 "use client";
-import ThemeToggel from "./themeToggel";
+import ThemeToggelButton from "@/components/ThemeToggelButton";
 
 import Link from "next/link";
 
-const NavBar = ({ children }: { children: React.ReactNode }) => {
+const Navbar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="">
       <header className="z-50 flex w-full flex-wrap py-4 text-sm  sm:flex-nowrap sm:justify-start">
@@ -18,7 +18,7 @@ const NavBar = ({ children }: { children: React.ReactNode }) => {
           </div>
           <div className="ml-auto mr-11 flex gap-x-3">
             {children}
-            <ThemeToggel></ThemeToggel>
+            <ThemeToggelButton></ThemeToggelButton>
           </div>
         </nav>
       </header>
@@ -26,4 +26,4 @@ const NavBar = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default NavBar;
+export default Navbar;

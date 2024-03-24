@@ -11,7 +11,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useEffect, useState } from "react";
-import NewGroupForm from "./newGroupForm";
+import NewGroupForm from "./NewGroupForm";
 const AddNewGroup = () => {
   const [isClient, setIsClient] = useState<Boolean>(false);
   useEffect(() => {

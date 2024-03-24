@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "./Navbar";
 import AuthLinks from "./authLinks";
 
 const LandingNav = () => {

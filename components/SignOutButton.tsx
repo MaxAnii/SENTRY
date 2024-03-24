@@ -2,7 +2,7 @@
 import { signOut } from "next-auth/react";
 import { Button } from "./ui/button";
 
-const SignOut = () => {
+const SignOutButton = () => {
   return (
     <Button className="pl-2  text-sm" onClick={() => signOut()}>
       Logout
@@ -10,4 +10,4 @@ const SignOut = () => {
   );
 };
 
-export default SignOut;
+export default SignOutButton;

@@ -3,10 +3,9 @@ import AddNewGroup from "@/components/addNewGroup";
 import GroupData from "@/components/GroupData";
 
 import NoNumberVerifiedAlert from "@/components/NoNumberVerifiedAlert";
-import { useCurrentUser } from "@/hook/current-user-session";
+import { useCurrentUser } from "@/hook/CurrentUserSession";
 
-
-const page = () => {
+const Page = () => {
   const user = useCurrentUser();
 
   return (
@@ -29,4 +28,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -6,16 +6,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import UserProfileForm from "./userProfileForm";
+import UserProfileForm from "@/components/UserProfileForm";
 
-import { useCurrentUser } from "@/hook/current-user-session";
-const UserAccountCard = () => {
+import { useCurrentUser } from "@/hook/CurrentUserSession";
+const UserProfileCard = () => {
   const user = useCurrentUser();
 
   return (
     <div>
       <div className="relative">
         <img
+          alt="user profile"
           src={user?.image || "https://github.com/shadcn.png"}
           className="absolute left-[180px] h-[150px]  w-[150px] rounded-full border-8 border-amber-300"
         />
@@ -37,4 +38,4 @@ const UserAccountCard = () => {
   );
 };
 
-export default UserAccountCard;
+export default UserProfileCard;
