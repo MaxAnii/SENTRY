@@ -17,14 +17,14 @@ import { useContext, useState, useTransition } from "react";
 import FormSubmissionSpinner from "./FormSubmissionSpinner";
 import { GroupListContext, GroupType } from "@/hook/GroupListContext";
 const UpdateGroupDetailsForm = (props: GroupType) => {
-  const groupDetails = useContext(GroupListContext)
+  const groupDetails = useContext(GroupListContext);
 
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<String>("");
   const form = useForm<z.infer<typeof UpdategroupDataSchema>>({
     resolver: zodResolver(UpdategroupDataSchema),
     defaultValues: {
-      id:props.id,
+      id: props.id,
       userId: props.userId,
       groupName: props.groupName,
       warningPerUser: props.warningPerUser || "3",
@@ -36,11 +36,12 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
     console.log(values);
     startTransition(async () => {
       const data = await updateGroupDetails(values);
-      if (data){ setMessage(data.message)
-      groupDetails.setCallFunction(prev=>!prev)
-      };
+      if (data) {
+        setMessage(data.message);
+        groupDetails.setCallFunction((prev) => !prev);
+      }
 
-      setTimeout(()=>setMessage(""),5000)
+      setTimeout(() => setMessage(""), 5000);
     });
   };
   return (
@@ -118,11 +119,11 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
           <p className=" text-red-500">{message}</p>
           {!isPending ? (
             <Button type="submit" className="w-full text-white">
-            Update
+              Update
             </Button>
-            ) : (
-              <FormSubmissionSpinner></FormSubmissionSpinner>
-            )}
+          ) : (
+            <FormSubmissionSpinner></FormSubmissionSpinner>
+          )}
         </form>
       </Form>
     </div>
