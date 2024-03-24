@@ -1,6 +1,6 @@
 import { RiTableAltLine } from "react-icons/ri";
 
-const NoTableScreen = () => {
+const NoAddedGroupMessage = () => {
   return (
     <div>
       <div className="flex h-[50vh] w-full items-center justify-center">
@@ -21,4 +21,4 @@ const NoTableScreen = () => {
   );
 };
 
-export default NoTableScreen;
+export default NoAddedGroupMessage 
