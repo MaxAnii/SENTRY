@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
 import LandingNav from "@/components/landingNav";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 export default function Home() {
   return (
     <>
-      <LandingNav></LandingNav>
+      <Navbar>
+        <></>
+      </Navbar>
       <div className="flex h-[90vh] items-center justify-center ">
         <div className="text-center ">
           <button className="my-2 rounded-3xl bg-gray-200 p-5 text-xl text-green-600 dark:bg-accent dark:text-green-400">
