@@ -9,9 +9,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import NoAddedGroupScreen from "@/components/NoAddedGroupScreen";
+import NoAddedGroupMessage from "@/components/NoAddedGroupMessage";
 import { useContext } from "react";
 import { GroupListContext } from "@/hook/GroupListContext";
+import DeleteGroup from "./DeleteGroup";
+import UpdateGroupDetails from "./UpdateGroupDetails";
 const ListGroupTable = () => {
   const groupList = useContext(GroupListContext);
   if (!groupList.data) return;
@@ -37,13 +39,21 @@ const ListGroupTable = () => {
                     </Avatar>
                   </TableCell>
                   <TableCell className=" pl-4">{item.groupName}</TableCell>
+                  <TableCell className="flex justify-end gap-2 ">
+                    <UpdateGroupDetails {...item} />
+                    <DeleteGroup
+                      id={item.id}
+                      setCallFunction={groupList.setCallFunction}
+                    />
+                  </TableCell>
+                  <TableCell className=" "></TableCell>
                 </TableRow>
               );
             })}
           </TableBody>
         </Table>
       ) : (
-        <NoAddedGroupScreen></NoAddedGroupScreen>
+        <NoAddedGroupMessage></NoAddedGroupMessage>
       )}
     </div>
   );
