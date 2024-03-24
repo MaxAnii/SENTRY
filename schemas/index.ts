@@ -22,6 +22,14 @@ export const groupDataSchema = z.object({
   toleranceLevel: z.string(),
   userId: z.string(),
 });
+export const UpdategroupDataSchema = z.object({
+  id: z.string(),
+  groupName: z.string().min(1),
+  warningPerUser: z.string(),
+  removeUser: z.string(),
+  toleranceLevel: z.string(),
+  userId: z.string(),
+});
 
 export const userDataSchema = z.object({
   id: z.string(),
