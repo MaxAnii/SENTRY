@@ -9,10 +9,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import NoTableScreen from "@/components/NoTableScreen";
+import NoAddedGroupScreen from "@/components/NoAddedGroupScreen";
 import { useContext } from "react";
 import { GroupListContext } from "@/hook/GroupListContext";
-const DashTable = () => {
+const ListGroupTable = () => {
   const groupList = useContext(GroupListContext);
   if (!groupList.data) return;
   return (
@@ -43,10 +43,10 @@ const DashTable = () => {
           </TableBody>
         </Table>
       ) : (
-        <NoTableScreen></NoTableScreen>
+        <NoAddedGroupScreen></NoAddedGroupScreen>
       )}
     </div>
   );
 };
 
-export default DashTable;
+export default ListGroupTable;
