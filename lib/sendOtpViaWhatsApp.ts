@@ -1,7 +1,7 @@
 export const sendOtp = async (phoneNumber: string, otp: string) => {
   try {
     const formatedPhoneNumber = "91" + phoneNumber.slice(-10) + "@c.us";
-    console.log(formatedPhoneNumber, otp);
+
     const sendOTP = await fetch("http://localhost:8000/send-otp", {
       method: "POST",
       headers: {
