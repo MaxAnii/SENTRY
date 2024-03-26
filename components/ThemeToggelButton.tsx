@@ -20,13 +20,13 @@ const ThemeToggelButton = () => {
   }, [toggel]);
   return (
     <div className="mt-2 flex gap-x-2">
-      <Label>
-        <MdDarkMode size={20}></MdDarkMode>
-      </Label>
       <Switch
         checked={toggel}
         onCheckedChange={() => setToggel((prev) => !prev)}
       />
+      <Label>
+        <MdDarkMode size={20}></MdDarkMode>
+      </Label>
     </div>
   );
 };
