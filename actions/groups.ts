@@ -6,6 +6,8 @@ import { auth } from "@/auth";
 
 export const addNewGroup = async (values: z.infer<typeof groupDataSchema>) => {
   try {
+    const session = await auth();
+    const adminPhoneNumber = session?.user.phoneNumber || "";
     const validateFields = groupDataSchema.safeParse(values);
     if (!validateFields.success) return { message: "no match" };
     const { groupName, warningPerUser, removeUser, toleranceLevel, userId } =
@@ -17,10 +19,12 @@ export const addNewGroup = async (values: z.infer<typeof groupDataSchema>) => {
         userId,
       },
     });
+
     if (groupAlreadyExists)
       return { message: "This Group is already protected" };
     const addGroup = await db.group.create({
       data: {
+        adminPhoneNumber,
         groupName,
         warningPerUser,
         removeUser,
@@ -64,7 +68,6 @@ export const updateGroupDetails = async (
   values: z.infer<typeof UpdategroupDataSchema>,
 ) => {
   try {
-    
     const validateFields = UpdategroupDataSchema.safeParse(values);
     if (!validateFields.success) return { message: "no match" };
     const { id } = validateFields.data;
