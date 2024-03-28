@@ -32,10 +32,13 @@ const VerifyOTP = () => {
     setMessage("");
 
     startTransition(() => {
-      verifyOTP(values).then((data) => {
+      verifyOTP(values).then(async (data) => {
         update();
         setMessage(data?.message);
-        if (data?.message === "Phone number updated") router.push("/account");
+        if (data?.message === "Phone number updated") {
+          await update();
+          router.push("/account");
+        }
         setTimeout(() => {
           setMessage("");
         }, 5000);
