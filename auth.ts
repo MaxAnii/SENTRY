@@ -13,29 +13,21 @@ export const {
     signIn: "/signIn",
     error: "/error",
   },
-  events: {
-    async linkAccount({ user }) {
-      await db.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
-      });
-    },
-  },
+
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider !== "credentails") return true;
       const existingUser = await db.user.findUnique({
         where: { id: user.id },
       });
-      // pervent signIn without email verfication
       if (!existingUser?.emailVerified) return false;
       return true;
     },
-    // used this callback to added the user Id in the session token, we can also added custom feilds (Ansar)
+
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
-        session.user.phoneNumber = token.phoneNumber; // fix this  ts error
+        session.user.phoneNumber = token.phoneNumber;
         session.user.image = token.image;
       }
 
