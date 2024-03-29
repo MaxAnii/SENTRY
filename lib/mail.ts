@@ -9,12 +9,11 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendVerificatonEmail = async (email: string, token: string) => {
-  const confrimLink = `http://localhost:3000/new-verification?token=${token}`;
+  const confrimLink = `http://localhost:3000/emailverification?token=${token}`;
   await transporter.sendMail({
     from: process.env.TRANSPORTER_FROM,
     to: email,
     subject: "Verify your email.",
     html: emailTemplate(confrimLink),
   });
-  console.log("emailsent");
 };
