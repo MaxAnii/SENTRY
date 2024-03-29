@@ -4,9 +4,8 @@ import ListGroupTable from "@/components/ListGroupTable";
 import { Triangle } from "react-loader-spinner";
 const GroupData = () => {
   const groupList = useContext(GroupListContext);
-  if (!groupList.data) return;
   return (
-    <div className="my-4 h-[80vh] p-4 shadow-xl sm:mx-[5vw] md:mx-[15vw]">
+    <div className=" my-4 h-[80vh]  p-2 md:mx-[15vw]  md:p-4">
       {!groupList.gettingGroupList ? (
         <ListGroupTable></ListGroupTable>
       ) : (

@@ -18,10 +18,10 @@ const UserProfileCard = () => {
         <img
           alt="user profile"
           src={user?.image || "https://github.com/shadcn.png"}
-          className="absolute left-[180px] h-[150px]  w-[150px] rounded-full border-8 border-amber-300"
+          className="absolute h-[120px] w-[120px] rounded-full border-8  border-amber-300 md:left-[180px] md:h-[150px] md:w-[150px]"
         />
       </div>
-      <Card className="mt-20 w-[500px]">
+      <Card className="mt-20 md:w-[500px]">
         <CardHeader className="mt-20">
           <CardTitle>My Account</CardTitle>
 

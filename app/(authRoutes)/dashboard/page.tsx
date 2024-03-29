@@ -9,7 +9,7 @@ const Page = () => {
   const user = useCurrentUser();
 
   return (
-    <div className="pl-9 ">
+    <div className="pl-2 md:pl-9">
       <div className="w-full max-w-[90vw] md:flex">
         <div>
           <div className="pb-2 text-3xl">Your Group</div>
