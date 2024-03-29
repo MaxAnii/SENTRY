@@ -2,11 +2,12 @@ import { Button } from "@/components/ui/button";
 import LandingNav from "@/components/landingNav";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import AuthLinks from "@/components/authLinks";
 export default function Home() {
   return (
     <>
       <Navbar>
-        <></>
+        <AuthLinks></AuthLinks>
       </Navbar>
       <div className="flex h-[90vh] items-center justify-center ">
         <div className="text-center ">
