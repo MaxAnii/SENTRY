@@ -13,8 +13,6 @@ export const sendOtp = async (phoneNumber: string, otp: string) => {
         OTP: otp,
       }),
     });
-
-    console.log(sendOTP.status);
     return sendOTP.status;
   } catch (error: any) {
     console.log(error.message);

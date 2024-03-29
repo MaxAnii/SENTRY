@@ -61,7 +61,9 @@ export const deleteGroup = async (groupId: string) => {
       },
     });
     if (data) return { message: "Group deleted" };
-  } catch (error) {}
+  } catch (error: any) {
+    console.log(error.message);
+  }
 };
 
 export const updateGroupDetails = async (
@@ -81,5 +83,7 @@ export const updateGroupDetails = async (
     });
     if (data) return { message: "Group Updated Successfully" };
     return { message: "something went wrong" };
-  } catch (error) {}
+  } catch (error: any) {
+    console.log(error.message);
+  }
 };

@@ -33,7 +33,6 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
     },
   });
   const onSubmit = (values: z.infer<typeof UpdategroupDataSchema>) => {
-    console.log(values);
     startTransition(async () => {
       const data = await updateGroupDetails(values);
       if (data) {

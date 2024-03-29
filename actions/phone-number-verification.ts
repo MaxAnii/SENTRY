@@ -25,7 +25,6 @@ export const createOTP = async (
       const data = await generateOTP(phoneNumber);
       if (data?.otp) {
         const response = await sendOtp(phoneNumber, data.otp);
-        console.log(response);
         if (response === 200)
           return {
             message: "OTP sent successfully",
@@ -80,5 +79,7 @@ export const verifyOTP = async (values: z.infer<typeof otpDataSchema>) => {
       }
     }
     return { message: "Something went wrong" };
-  } catch (error) {}
+  } catch (error: any) {
+    console.log(error.message);
+  }
 };
