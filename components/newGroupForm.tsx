@@ -24,7 +24,6 @@ const NewGroupForm = () => {
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<String>("");
   const user = useCurrentUser();
-  if (!user) return;
   const form = useForm<z.infer<typeof groupDataSchema>>({
     resolver: zodResolver(groupDataSchema),
     defaultValues: {

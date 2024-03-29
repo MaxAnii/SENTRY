@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import LandingNav from "@/components/landingNav";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import AuthLinks from "@/components/authLinks";

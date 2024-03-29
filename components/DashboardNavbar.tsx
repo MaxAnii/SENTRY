@@ -6,10 +6,8 @@ const DashboardNavbar = () => {
   return (
     <div>
       <Navbar>
-        <>
-          <NavigationLinks></NavigationLinks>
-          <UserDropdownMenu></UserDropdownMenu>
-        </>
+        <NavigationLinks></NavigationLinks>
+        <UserDropdownMenu></UserDropdownMenu>
       </Navbar>
     </div>
   );

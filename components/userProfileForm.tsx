@@ -25,15 +25,14 @@ const UserProfileForm = () => {
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
   const user = useCurrentUser();
-  if (!user) return;
   const form = useForm<z.infer<typeof userDataSchema>>({
     resolver: zodResolver(userDataSchema),
     defaultValues: {
-      id: user.id,
-      name: user.name || "",
-      email: user.email || "",
-      phoneNumber: user.phoneNumber,
-      image: user.image || "",
+      id: user?.id,
+      name: user?.name || "",
+      email: user?.email || "",
+      phoneNumber: user?.phoneNumber,
+      image: user?.image || "",
     },
   });
 
