@@ -38,6 +38,7 @@ const LoginForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="text-red-700">{messsage}</div>
         <FormField
           control={form.control}
           name="email"
@@ -75,7 +76,7 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
-        <div className="text-red-700">{messsage}</div>
+
         {!isPending ? (
           <Button type="submit" className="w-full">
             Sign In
