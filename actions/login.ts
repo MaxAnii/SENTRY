@@ -16,7 +16,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
     where: { email },
   });
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Email does not exist!" };
+    return { message: "Email does not exist!" };
   }
   if (!existingUser.emailVerified) {
     const verficationToken = await generateVerificationToken(
