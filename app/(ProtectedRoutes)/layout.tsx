@@ -1,4 +1,4 @@
-import DashboardNavbar from "@/components/DashboardNavBar";
+import DashboardNavbar from "@/components/DashboardNavbar";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import GroupListProvider from "@/hook/GroupListContext";
