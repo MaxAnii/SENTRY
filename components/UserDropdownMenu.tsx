@@ -29,7 +29,9 @@ const UserDropdownMenu = () => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/account">Profile</Link>
+            <Link href="/account" className="w-full hover:text-slate-300 px-3 py-2 text-center">
+              Profile
+            </Link>
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />

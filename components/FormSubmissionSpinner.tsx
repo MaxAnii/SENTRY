@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 const FormSubmissionSpinner = () => {
   return (
     <Button className="w-full" disabled>
-      <ThreeDots
+      {/* <ThreeDots
         height="35"
         width="80"
         color="#FFFFFF"
@@ -11,7 +11,7 @@ const FormSubmissionSpinner = () => {
         wrapperStyle={{}}
         wrapperClass=""
         visible={true}
-      />
+      /> */}
     </Button>
   );
 };

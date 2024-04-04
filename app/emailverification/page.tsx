@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { newVerification } from "@/actions/emailverification";
-import { useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import FormContainer from "@/components/auth/formContainer";
 import { Triangle } from "react-loader-spinner";
 const Page = () => {
@@ -10,24 +10,27 @@ const Page = () => {
   const [messageClass, setMessageClass] = useState("");
   const params = useSearchParams();
   const token = params.get("token");
-  const confrimToken = () => {
+  const confrimToken = useCallback(() => {
     if (!token) return;
     newVerification(token).then((data) => {
-      if (data?.message === "verified") {
-        setMessage("Your email is verified");
-        setMessageClass("green");
-      } else {
-        setMessageClass("red");
-
+      if (
+        data?.message === "Email verified!" ||
+        data?.message === "Email already verified!"
+      ) {
         setMessage(data.message);
+        setMessageClass("text-green-600");
+      } else {
+        setMessageClass("text-red-600");
+        if (data?.message) setMessage(data.message);
+        else setMessage("Some error occured!");
       }
     });
-  };
+  }, [token]);
   useEffect(() => {
     setTransiton(() => {
       confrimToken();
     });
-  }, []);
+  }, [confrimToken]);
   return (
     <div className="flex h-screen items-center justify-center">
       <FormContainer
@@ -45,7 +48,7 @@ const Page = () => {
             />
           ) : (
             <div
-              className={`text-xl text-${messageClass}-600 ml-[-130px] mt-2 rounded-xl bg-gray-800 p-6 text-center`}
+              className={`text-xl ${messageClass} ml-[-130px] mt-2 rounded-xl bg-gray-800 p-6 text-center`}
             >
               {message}
             </div>

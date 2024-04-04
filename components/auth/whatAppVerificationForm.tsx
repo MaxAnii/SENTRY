@@ -16,7 +16,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createOTP } from "@/actions/phone-number-verification";
-import FormSubmissionSpinner from "../FormSubmissionSpinner";
 import VerifyOTP from "../VerifyOTP";
 const WhatAppVerificationForm = () => {
   const [message, setMessage] = useState<string>("");
@@ -30,12 +29,14 @@ const WhatAppVerificationForm = () => {
   const [showSendAgainOTP, setShowSendAgainOTP] = useState<Boolean>(false);
   const [timer, setTimer] = useState<number>(20);
   const [isPending, startTransition] = useTransition();
+  const [messageColor, setMessageColor] = useState("text-red-600");
   const sendOTP = async (values: z.infer<typeof userPhoneNumberSchema>) => {
     setMessage("");
     if (!values.phoneNumber) return;
     startTransition(async () => {
       const data = await createOTP(values);
       if (data?.message === "OTP sent successfully") {
+        setMessageColor("text-green-400")
         setTimer(20);
         setShowSendAgainOTP(false);
         setShowConfrimOTP(true);
@@ -56,13 +57,11 @@ const WhatAppVerificationForm = () => {
   return (
     <div className="mt-[20vh] flex justify-center">
       <Card className="w-[400px]">
-        <CardHeader>
-          {/* <CardTitle>Verify Your WhatsApp number</CardTitle> */}
-        </CardHeader>
+        <CardHeader></CardHeader>
         <CardContent>
           {!showConfrimOTP ? (
             <Form {...form}>
-              <p className="text-red-500">{message}</p>
+              <p className={`pb-2 ${messageColor}`}>{message}</p>
               <form className="space-y-6" onSubmit={form.handleSubmit(sendOTP)}>
                 <FormField
                   control={form.control}
@@ -78,17 +77,13 @@ const WhatAppVerificationForm = () => {
                     </FormItem>
                   )}
                 />
-                {!isPending ? (
-                  <Button
-                    type="submit"
-                    className="w-full text-black dark:text-white"
-                    disabled={isPending}
-                  >
-                    Get OTP
-                  </Button>
-                ) : (
-                  <FormSubmissionSpinner></FormSubmissionSpinner>
-                )}
+                <Button
+                  type="submit"
+                  className="w-full text-black dark:text-white"
+                  disabled={isPending}
+                >
+                  Get OTP
+                </Button>
               </form>
             </Form>
           ) : (

@@ -1,11 +1,11 @@
 "use client";
 import { useTheme } from "next-themes";
-import { MdDarkMode } from "react-icons/md";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@radix-ui/react-label";
 const ThemeToggelButton = () => {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
   const [toggel, setToggel] = useState(true);
 
   useEffect(() => {
@@ -25,7 +25,11 @@ const ThemeToggelButton = () => {
         onCheckedChange={() => setToggel((prev) => !prev)}
       />
       <Label>
-        <MdDarkMode size={20}></MdDarkMode>
+        {toggel ? (
+          <MdDarkMode size={20}></MdDarkMode>
+        ) : (
+          <MdLightMode size={20}></MdLightMode>
+        )}
       </Label>
     </div>
   );

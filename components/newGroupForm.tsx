@@ -121,17 +121,13 @@ const NewGroupForm = () => {
             )}
           />
           <p className="text-xl text-red-500">{message}</p>
-          {!isPending ? (
-            <Button
-              type="submit"
-              className="w-full text-white"
-              disabled={isPending}
-            >
-              Add
-            </Button>
-          ) : (
-            <FormSubmissionSpinner></FormSubmissionSpinner>
-          )}
+          <Button
+            type="submit"
+            className="w-full text-white"
+            disabled={isPending}
+          >
+            Add
+          </Button>
         </form>
       </Form>
     </div>
