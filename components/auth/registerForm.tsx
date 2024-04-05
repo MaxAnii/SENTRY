@@ -28,7 +28,7 @@ const RegisterForm = () => {
       };
   const [message, setMessage] = useState<String>("");
   const [isPending, setTransition] = useTransition();
-  const [messageColor,setMessageColor] = useState("text-red-700")
+  const [messageColor, setMessageColor] = useState("text-red-700");
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -48,7 +48,7 @@ const RegisterForm = () => {
         if (data.error) {
           setMessage(data.error);
         } else {
-          setMessageColor("text-green-400")
+          setMessageColor("text-green-400");
           setMessage("Verfication email is sent!");
         }
       });
@@ -109,9 +109,10 @@ const RegisterForm = () => {
           )}
         />
         <div className={`${messageColor} text-sm`}>{message}</div>
-        <Button type="submit" className="w-full" disabled={isPending}>
-          Sign Up
-        </Button>
+        <FormSubmissionSpinner
+          isPending={isPending}
+          label={"Sign Up"}
+        ></FormSubmissionSpinner>
       </form>
     </Form>
   );

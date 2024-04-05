@@ -16,7 +16,7 @@ import { useState, useTransition } from "react";
 import { useCurrentUser } from "@/hook/CurrentUserSession";
 import { updateProfile } from "@/actions/updateProfile";
 import { useSession } from "next-auth/react";
-import { Button } from "@/components/ui/button";
+import FormSubmissionSpinner from "./FormSubmissionSpinner";
 import Link from "next/link";
 
 const UserProfileForm = () => {
@@ -125,9 +125,10 @@ const UserProfileForm = () => {
             Add/change whatsApp number
           </Link>
           <div className="text-red-700">{messsage}</div>
-          <Button type="submit" className="w-full" disabled={isPending}>
-            Update
-          </Button>
+          <FormSubmissionSpinner
+            isPending={isPending}
+            label={"Update"}
+          ></FormSubmissionSpinner>
         </form>
       </Form>
     </>

@@ -15,6 +15,7 @@ import { loginSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
+import FormSubmissionSpinner from "../FormSubmissionSpinner";
 const LoginForm = () => {
   const [messsage, setMessage] = useState<String | undefined>("");
 
@@ -75,9 +76,10 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isPending}>
-          Sign In
-        </Button>
+        <FormSubmissionSpinner
+          isPending={isPending}
+          label={"Sign In"}
+        ></FormSubmissionSpinner>
       </form>
     </Form>
   );

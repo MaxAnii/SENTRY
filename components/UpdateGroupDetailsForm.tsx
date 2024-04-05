@@ -116,13 +116,10 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
             )}
           />
           <p className=" text-red-500">{message}</p>
-          {!isPending ? (
-            <Button type="submit" className="w-full text-white">
-              Update
-            </Button>
-          ) : (
-            <FormSubmissionSpinner></FormSubmissionSpinner>
-          )}
+          <FormSubmissionSpinner
+            isPending={isPending}
+            label={"Update"}
+          ></FormSubmissionSpinner>
         </form>
       </Form>
     </div>
