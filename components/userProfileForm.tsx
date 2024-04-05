@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -17,7 +17,6 @@ import { useCurrentUser } from "@/hook/CurrentUserSession";
 import { updateProfile } from "@/actions/updateProfile";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import FormSubmissionSpinner from "./FormSubmissionSpinner";
 import Link from "next/link";
 
 const UserProfileForm = () => {
@@ -122,18 +121,13 @@ const UserProfileForm = () => {
               </FormItem>
             )}
           />
-          {/* <VerifyPhoneNumber></VerifyPhoneNumber> */}
           <Link href="whatsAppAuth" className="pt-2 text-blue-500 underline">
             Add/change whatsApp number
           </Link>
           <div className="text-red-700">{messsage}</div>
-          {!isPending ? (
-            <Button type="submit" className="w-full">
-              Update
-            </Button>
-          ) : (
-            <FormSubmissionSpinner></FormSubmissionSpinner>
-          )}
+          <Button type="submit" className="w-full" disabled={isPending}>
+            Update
+          </Button>
         </form>
       </Form>
     </>

@@ -28,7 +28,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
         verficationToken.token,
       );
     }
-    return { message: "Confrimation Email Sent!" };
+    return { message: "Confirmation email sent!" };
   }
 
   try {
@@ -46,7 +46,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
           };
         default:
           return {
-            message: "something went wrong",
+            message: "Something went wrong",
           };
       }
     }

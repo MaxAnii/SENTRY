@@ -50,6 +50,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.6",
+		"@types/nodemailer": "^6.4.14",
 		"@types/react": "18.2.55",
 		"@types/uuid": "^9.0.8",
 		"autoprefixer": "^10.4.19",

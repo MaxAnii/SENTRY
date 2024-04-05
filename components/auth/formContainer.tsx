@@ -22,8 +22,8 @@ const FormContainer = ({
   backButtonhref,
 }: propsType) => {
   return (
-    <div className="mt-[10vh] flex justify-center ">
-      <Card className=" w-[400px] shadow-md">
+    <div className="w-full flex justify-center items-center pt-4 lg:pt-12 p-3">
+      <Card className=" w-full max-w-[400px] shadow-md">
         <CardHeader className="text-center">{title}</CardHeader>
         <CardContent>{children}</CardContent>
 

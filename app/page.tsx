@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/NavBar";
 import AuthLinks from "@/components/authLinks";
 export default function Home() {
   return (
@@ -8,26 +8,29 @@ export default function Home() {
       <Navbar>
         <AuthLinks></AuthLinks>
       </Navbar>
-      <div className="flex h-[90vh] items-center justify-center ">
-        <div className="text-center ">
+      <div className="flex w-full items-center justify-center lg:pt-16">
+        <div className="text-center">
           <button className="my-2 rounded-3xl bg-gray-200 p-5 text-xl text-green-600 dark:bg-accent dark:text-green-400">
             Welcome to SENTRY
           </button>
-          <h1 className="text-5xl font-bold">Protect Your Chat</h1>
-          <div className="p-4 px-[10vw] text-center md:mx-[200px] ">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-            eligendi odio dolore provident, debitis consequatur facilis at?
-            Quisquam magni exercitationem nihil asperiores ipsa officiis maxime
-            sapiente, debitis, amet, at soluta.
-          </div>
+          <h1 className="text-3xl font-bold lg:text-5xl">Protect Your Chat</h1>
+          <p className="w-full p-4 text-center lg:px-20">
+            Sentry offers a comprehensive solution to enhance user safety on
+            digital platforms. By efficiently identifying and filtering out
+            semantically toxic or offensive content, the service effectively
+            curtails online harassment, bullying, and hate speech, fostering a
+            more secure digital space.
+          </p>
           <div className="text-3xl ">
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-xl text-indigo-950"
-            >
-              <Link href="/signIn">Get Started</Link>
-            </Button>
+            <Link href="/signIn">
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-base text-indigo-950"
+              >
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

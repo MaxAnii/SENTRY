@@ -5,11 +5,11 @@ import { Triangle } from "react-loader-spinner";
 const GroupData = () => {
   const groupList = useContext(GroupListContext);
   return (
-    <div className=" my-4 h-[80vh]  p-2 md:mx-[15vw]  md:p-4">
+    <div className="w-full">
       {!groupList.gettingGroupList ? (
         <ListGroupTable></ListGroupTable>
       ) : (
-        <div className="flex h-[80vh] items-center justify-center">
+        <div className="flex h-[60vh] items-center justify-center">
           <Triangle
             height="80"
             width="80"

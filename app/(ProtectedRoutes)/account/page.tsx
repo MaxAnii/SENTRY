@@ -2,7 +2,7 @@ import UserProfileCard from "@/components/UserProfileCard";
 
 const page = () => {
   return (
-    <div className="mt-5 flex   justify-center">
+    <div className="flex justify-center p-5">
       <UserProfileCard></UserProfileCard>
     </div>
   );
