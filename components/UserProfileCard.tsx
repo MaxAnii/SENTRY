@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import UserProfileForm from "@/components/UserProfileForm";
+import UserProfileForm from "@/components/userProfileForm";
 
 import { useCurrentUser } from "@/hook/CurrentUserSession";
 const UserProfileCard = () => {
