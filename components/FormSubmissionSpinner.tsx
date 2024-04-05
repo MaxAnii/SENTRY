@@ -1,18 +1,31 @@
 import { ThreeDots } from "react-loader-spinner";
 import { Button } from "@/components/ui/button";
-const FormSubmissionSpinner = () => {
+const FormSubmissionSpinner = ({
+  ...props
+}: {
+  isPending: boolean;
+  label: string;
+}) => {
   return (
-    <Button className="w-full" disabled>
-      {/* <ThreeDots
-        height="35"
-        width="80"
-        color="#FFFFFF"
-        ariaLabel="bars-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-      /> */}
-    </Button>
+    <>
+      {props.isPending ? (
+        <Button className="w-full" disabled={props?.isPending}>
+          <ThreeDots
+            height="35"
+            width="80"
+            color="#FFFFFF"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </Button>
+      ) : (
+        <Button className="w-full" type="submit">
+          {props.label}
+        </Button>
+      )}
+    </>
   );
 };
 
