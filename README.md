@@ -81,21 +81,8 @@ To get started with Sentry, follow these steps:
 
 5. **Access the Dashboard**: Open your web browser and navigate to `http://localhost:3000` to access the Sentry dashboard.
 
-## Contributing
+## Support
 
-We welcome contributions from the community to enhance Sentry further. If you'd like to contribute, please follow these guidelines:
+By [Ansar](https://github.com/MaxAnii) with ❤️.
 
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -am 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Create a new Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Thanks to the developers of [Express.js](https://expressjs.com/) for providing a robust framework for building web applications.
-- Special thanks to the community for their valuable feedback and contributions.
+Feel free to open an issue or use this as your project!
