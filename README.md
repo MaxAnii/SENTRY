@@ -2,7 +2,7 @@
 ![Screenshot 2024-04-28 125055](https://github.com/MaxAnii/SENTRY/assets/96937469/463003df-6813-41ff-b2a5-55c121b69422)
 
 
-Sentry is a nodeJS service that moderates content semantically on social media platform, WhatsApp.
+Sentry is a nodeJS service that moderates content semantically on the social media platform, WhatsApp.
 ## Features
 
 - **User Authentication**: Secure user authentication system with email verification.
@@ -63,8 +63,10 @@ To get started with Sentry, follow these steps:
    NODEMAILER_AUTH_PASS
    TRANSPORTER_FROM 
     ```
-
-4. **Run the Application**: Start the application locally.
+4. **Set Up Backend**: Set up the backend to moderate the content.
+    [click here](https://github.com/MaxAnii/SENTRY-whatsApp-server) to get the backend repo.
+   
+6. **Run the Application**: Start the application locally.
 
     ```bash
     npm start
