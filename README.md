@@ -2,8 +2,7 @@
 ![Screenshot 2024-04-28 125055](https://github.com/MaxAnii/SENTRY/assets/96937469/463003df-6813-41ff-b2a5-55c121b69422)
 
 
-Sentry is a powerful tool designed for the semantic analysis of content within WhatsApp groups. It provides a comprehensive dashboard for users to manage their WhatsApp groups, set configurations, and monitor activity. With Sentry, users can ensure a conducive environment within their WhatsApp communities by enforcing specific rules and thresholds.
-
+Sentry is a nodeJS service that moderates content semantically on social media platform, WhatsApp.
 ## Features
 
 - **User Authentication**: Secure user authentication system with email verification.
@@ -11,8 +10,7 @@ Sentry is a powerful tool designed for the semantic analysis of content within W
 - **Configuration Customization**: Set tolerance levels for messages and define warning thresholds for users.
 - **WhatsApp Number Verification**: Verify WhatsApp numbers before adding groups, ensuring admin access for added numbers.
 - **Automated Warning System**: Automatically warn users based on specified thresholds, promoting responsible behavior.
-- **Actionable Insights**: Gain insights into group activity and trends through comprehensive analytics.
-- **Responsive Design**: Mobile-friendly interface for easy access and management on the go.
+
 
 ## How It Works
 
@@ -37,14 +35,7 @@ Sentry operates through a seamless process designed to ensure efficient manageme
    - When a threshold is reached (e.g., excessive violation of message tolerance levels), Sentry automatically warns the respective users.
    - Warning notifications are sent to users, prompting them to adhere to group guidelines and norms.
 
-5. **Actionable Insights and Analytics**:
-   - Sentry provides comprehensive analytics and insights into group activity.
-   - Users can track trends, identify potential issues, and make informed decisions to maintain a healthy group environment.
 
-6. **Responsive Design and Accessibility**:
-   - The Sentry dashboard is designed to be mobile-friendly, ensuring users can manage and monitor their groups from anywhere, at any time.
-
-By following this structured process, Sentry empowers users to effectively manage and maintain positive environments within their WhatsApp groups, promoting meaningful interactions and community engagement.
 
 ## Getting Started
 
@@ -53,7 +44,7 @@ To get started with Sentry, follow these steps:
 1. **Clone the Repository**: Clone the Sentry repository to your local machine.
 
     ```bash
-    git clone https://github.com/your-username/sentry.git
+    git clone https://github.com/MaxAnii/sentry.git
     ```
 
 2. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies.
@@ -78,8 +69,6 @@ To get started with Sentry, follow these steps:
     ```bash
     npm start
     ```
-
-5. **Access the Dashboard**: Open your web browser and navigate to `http://localhost:3000` to access the Sentry dashboard.
 
 ## Support
 
