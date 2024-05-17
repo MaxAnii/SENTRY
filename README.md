@@ -31,6 +31,7 @@ Sentry operates through a seamless process designed to ensure efficient manageme
    - This includes setting tolerance levels for messages and defining the number of warnings per user before actions are taken.
 
 4. **Automated Monitoring and Warning System**:
+   - Add the SENTRY BOT in your WhatsApp group as an admin.
    - Sentry continuously monitors group activity based on configured thresholds.
    - When a threshold is reached (e.g., excessive violation of message tolerance levels), Sentry automatically warns the respective users.
    - Warning notifications are sent to users, prompting them to adhere to group guidelines and norms.
