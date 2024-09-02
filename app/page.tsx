@@ -8,7 +8,7 @@ export default function Home() {
       <Navbar>
         <AuthLinks></AuthLinks>
       </Navbar>
-      <div className="flex h-screen w-full items-center justify-center">
+      <div className="flex h-[87vh] w-full items-center justify-center">
         <div className="text-center">
           <button className="my-2 rounded-3xl bg-gray-200 p-5 text-xl text-green-600 dark:bg-accent dark:text-green-400">
             Welcome to SENTRY
