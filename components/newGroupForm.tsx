@@ -30,8 +30,8 @@ const NewGroupForm = () => {
       userId: user?.id,
       groupName: "",
       warningPerUser: "3",
-      toleranceLevel: "0",
-      removeUser: "0",
+      toleranceLevel: "1",
+      removeUser: "1",
     },
   });
   const onSubmit = (values: z.infer<typeof groupDataSchema>) => {
@@ -81,7 +81,8 @@ const NewGroupForm = () => {
                   <Input
                     {...field}
                     type="range"
-                    max="5"
+                    min="1"
+                    max="9"
                     disabled={isPending}
                   ></Input>
                 </FormControl>
@@ -95,7 +96,7 @@ const NewGroupForm = () => {
             name="warningPerUser"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>No. of warning (per user)</FormLabel>
+                <FormLabel>No. of warnings per user</FormLabel>
                 <FormControl>
                   <Input {...field} type="range" max="5" disabled={isPending} />
                 </FormControl>
@@ -104,7 +105,7 @@ const NewGroupForm = () => {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="removeUser"
             render={({ field }) => (
@@ -119,7 +120,7 @@ const NewGroupForm = () => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
           <p className="text-xl text-red-500">{message}</p>
           <Button
             type="submit"
