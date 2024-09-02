@@ -76,7 +76,8 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
                   <Input
                     {...field}
                     type="range"
-                    max="5"
+                    min="1"
+                    max="9"
                     disabled={isPending}
                   ></Input>
                 </FormControl>
@@ -99,7 +100,7 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="removeUser"
             render={({ field }) => (
@@ -114,7 +115,7 @@ const UpdateGroupDetailsForm = (props: GroupType) => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
           <p className=" text-red-500">{message}</p>
           <FormSubmissionSpinner
             isPending={isPending}
