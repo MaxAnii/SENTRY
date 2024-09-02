@@ -1,7 +1,8 @@
 {
-	"title": "SENTRY",
-	"description": "A NodeJS service for semantic content moderation on the social media platform, WhatsApp. Implements a feature to warn and remove users from chat groups for policy violations",
-	"banner": "https://projectbanners.s3.eu-north-1.amazonaws.com/Screenshot+2024-08-27+105953.png",
-	"github": "https://github.com/MaxAnii/SENTRY",
-  "projectNumber":5
+  "title": "SENTRY",
+  "description": "A NodeJS service for semantic content moderation on the social media platform, WhatsApp. Implements a feature to warn and remove users from chat groups for policy violations",
+  "banner": "https://projectbanners.s3.eu-north-1.amazonaws.com/Screenshot+2024-08-27+105953.png",
+  "github": "https://github.com/MaxAnii/SENTRY",
+  "projectNumber": 5,
+  "techStack": "Next JS, Shadcn , PostgreSQL, Prisma, Whatsapp-web.js, sightengine API."
 }
